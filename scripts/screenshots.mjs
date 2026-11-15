@@ -142,7 +142,7 @@ for (const scene of SCENES) {
   const webp = join(ROOT, 'docs', 'public', 'images', `${scene.name}.webp`)
 
   if (scene.demo) {
-    const base = '/three-map-terrain/'
+    const base = '/geospatial-scene-engine/'
     const { server, port } = await serve(join(ROOT, 'docs', 'dist'), base)
     const page = await browser.newPage({
       viewport: { width: 1280, height: 800 },
