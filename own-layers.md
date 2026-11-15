@@ -2,7 +2,7 @@
 
 > FeatureLayer loads the tiles of any source and keeps your geometry in step with the terrain; TileContext drapes, extrudes and places models on it.
 
-`FeatureLayer` is what `Buildings` and `Roads` are made of: give it a source of features and a `build` that draws a terrain tile; it loads the source’s tiles (shared, cancelled when unused), draws every tile when its features arrive, and again when the heights it read change. What you draw goes into named parts — one object per part and tile, each with [its material](/three-map-terrain/materials/) — and what you wrap in `ctx.feature()` can be picked and highlighted.
+`FeatureLayer` is what `Buildings` and `Roads` are made of: give it a source of features and a `build` that draws a terrain tile; it loads the source’s tiles (shared, cancelled when unused), draws every tile when its features arrive, and again when the heights it read change. What you draw goes into named parts — one object per part and tile, each with [its material](/geospatial-scene-engine/materials/) — and what you wrap in `ctx.feature()` can be picked and highlighted.
 
 ```ts
 import { Color, Group } from 'three'

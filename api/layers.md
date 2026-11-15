@@ -2,11 +2,11 @@
 
 > The members every layer shares — pick, highlight, setMaterial, maxDistance, the ground it covers — and new FeatureLayer(), the frame of them all.
 
-The options of each layer are on its page: [`Buildings`](/three-map-terrain/layers/buildings/#new-buildings-source-options-), [`Roads`](/three-map-terrain/layers/roads/#new-roads-source-options-), [`Water`](/three-map-terrain/layers/water/#new-water-source-options-), [`Vegetation`](/three-map-terrain/layers/vegetation/#new-vegetation-source-options-), [`TerrainBase`](/three-map-terrain/layers/base/#new-terrainbase-depth-material-).
+The options of each layer are on its page: [`Buildings`](/geospatial-scene-engine/layers/buildings/#new-buildings-source-options-), [`Roads`](/geospatial-scene-engine/layers/roads/#new-roads-source-options-), [`Water`](/geospatial-scene-engine/layers/water/#new-water-source-options-), [`Vegetation`](/geospatial-scene-engine/layers/vegetation/#new-vegetation-source-options-), [`TerrainBase`](/geospatial-scene-engine/layers/base/#new-terrainbase-depth-material-).
 
 ## `new FeatureLayer({ source, build?, material?, highlightColor?, minZoom?, maxDistance?, name? })`
 
-The frame of the layers — [Your own layers](/three-map-terrain/own-layers/). `source` is any `FeatureSource`; `name` names the group and its objects (`'<name> <part> <z/x/y>'`).
+The frame of the layers — [Your own layers](/geospatial-scene-engine/own-layers/). `source` is any `FeatureSource`; `name` names the group and its objects (`'<name> <part> <z/x/y>'`).
 
 ## Members
 
@@ -35,4 +35,4 @@ And the ground they take (`GroundCover`, what `Vegetation`’s `avoid` reads):
 
 ## `MapLayer`
 
-What the map talks to — every method optional: `attribution`, `attach(map)`, `tileLoaded(tile)`, `tileChanged(tile)`, `tileRemoved(tile)`, `materialChanged(map)`, `whenReady()`, `detach(map)`. [Your own layers](/three-map-terrain/own-layers/#maplayer).
+What the map talks to — every method optional: `attribution`, `attach(map)`, `tileLoaded(tile)`, `tileChanged(tile)`, `tileRemoved(tile)`, `materialChanged(map)`, `whenReady()`, `detach(map)`. [Your own layers](/geospatial-scene-engine/own-layers/#maplayer).

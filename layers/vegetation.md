@@ -23,7 +23,7 @@ map.addLayer(
 
 ## What grows is yours
 
-The layer plants — where, how dense, clear of `avoid`, never twice; `plant(ctx, spot, feature, plants)` decides what grows at each spot, by the feature’s `kind` or `properties`: `plants.tree(height?)`, `plants.bush(height?)`, copies of your own in parts you name, or nothing. Woods and scrub are all the layer reads by default; read more with the source’s `properties` (or Overpass `query`, [see Sources](/three-map-terrain/sources/#buildings-roads-water-vegetation--a-provider-read-through-a-schema)) — orchards of low trees, heaths of dwarf shrubs:
+The layer plants — where, how dense, clear of `avoid`, never twice; `plant(ctx, spot, feature, plants)` decides what grows at each spot, by the feature’s `kind` or `properties`: `plants.tree(height?)`, `plants.bush(height?)`, copies of your own in parts you name, or nothing. Woods and scrub are all the layer reads by default; read more with the source’s `properties` (or Overpass `query`, [see Sources](/geospatial-scene-engine/sources/#buildings-roads-water-vegetation--a-provider-read-through-a-schema)) — orchards of low trees, heaths of dwarf shrubs:
 
 ```ts
 import {
@@ -51,24 +51,24 @@ new Vegetation({
 })
 ```
 
-A spot is `{ x, y, z, random }`: where, in the tile’s coordinates, on the rendered ground, and a number in \[0, 1) that stays the same — for heights, sizes, species. Copies of your own (`ctx.instances(part, geometry).add(matrix)`, e.g. of `plantShapes().crown`) take the crowns’ color unless you give their part a material; they are picked as their area, highlighted and exported like the plants. Grass, fields and other land cover are areas, not plants: drape them in a `build` of yours around `draw`, or in a [layer of your own](/three-map-terrain/own-layers/).
+A spot is `{ x, y, z, random }`: where, in the tile’s coordinates, on the rendered ground, and a number in \[0, 1) that stays the same — for heights, sizes, species. Copies of your own (`ctx.instances(part, geometry).add(matrix)`, e.g. of `plantShapes().crown`) take the crowns’ color unless you give their part a material; they are picked as their area, highlighted and exported like the plants. Grass, fields and other land cover are areas, not plants: drape them in a `build` of yours around `draw`, or in a [layer of your own](/geospatial-scene-engine/own-layers/).
 
 ## `new Vegetation({ source, ...options })`
 
-| Option           | Default   | Description                                                                                                                                    |
-| ---------------- | --------- | ---------------------------------------------------------------------------------------------------------------------------------------------- |
-| `source`         | —         | `VegetationSource` or its props; [see Sources](/three-map-terrain/sources/#buildings-roads-water-vegetation--a-provider-read-through-a-schema) |
-| `material`       | the map’s | The look overriding the map’s, a `Material`, or `(part) => Material \| undefined`                                                              |
-| `build`          | —         | `(ctx, draw) => void`: [replace or extend the geometry](/three-map-terrain/own-layers/#the-built-in-layers-geometry)                           |
-| `plant`          | —         | `(ctx, spot, feature, { tree, bush }) => void`: [what grows at a spot](#what-grows-is-yours)                                                   |
-| `avoid`          | `[]`      | Layers whose ground stays clear of plants                                                                                                      |
-| `clearance`      | `2`       | Meters a plant keeps from what `avoid` drew                                                                                                    |
-| `spacing`        | `9`, `5`  | Meters between the plants of an area — 5 in scrub; or `(zoom, feature) => meters`                                                              |
-| `treeHeights`    | `[8, 16]` | Meters, for trees the source gives no height                                                                                                   |
-| `bushHeights`    | `[2, 4]`  | Meters, for bushes the source gives no height                                                                                                  |
-| `maxPerTile`     | `12000`   | Plants per tile; over it a tile is thinned evenly                                                                                              |
-| `highlightColor` | `#ffb020` | The color of `highlight()`                                                                                                                     |
-| `minZoom`        | `14`      | Terrain tiles below this zoom get no plants                                                                                                    |
-| `maxDistance`    | —         | Meters from the camera beyond which a tile’s plants are hidden, e.g. `(part) => (part === 'trunks' ? 800 : 2500)`                              |
+| Option           | Default   | Description                                                                                                                                          |
+| ---------------- | --------- | ---------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `source`         | —         | `VegetationSource` or its props; [see Sources](/geospatial-scene-engine/sources/#buildings-roads-water-vegetation--a-provider-read-through-a-schema) |
+| `material`       | the map’s | The look overriding the map’s, a `Material`, or `(part) => Material \| undefined`                                                                    |
+| `build`          | —         | `(ctx, draw) => void`: [replace or extend the geometry](/geospatial-scene-engine/own-layers/#the-built-in-layers-geometry)                           |
+| `plant`          | —         | `(ctx, spot, feature, { tree, bush }) => void`: [what grows at a spot](#what-grows-is-yours)                                                         |
+| `avoid`          | `[]`      | Layers whose ground stays clear of plants                                                                                                            |
+| `clearance`      | `2`       | Meters a plant keeps from what `avoid` drew                                                                                                          |
+| `spacing`        | `9`, `5`  | Meters between the plants of an area — 5 in scrub; or `(zoom, feature) => meters`                                                                    |
+| `treeHeights`    | `[8, 16]` | Meters, for trees the source gives no height                                                                                                         |
+| `bushHeights`    | `[2, 4]`  | Meters, for bushes the source gives no height                                                                                                        |
+| `maxPerTile`     | `12000`   | Plants per tile; over it a tile is thinned evenly                                                                                                    |
+| `highlightColor` | `#ffb020` | The color of `highlight()`                                                                                                                           |
+| `minZoom`        | `14`      | Terrain tiles below this zoom get no plants                                                                                                          |
+| `maxDistance`    | —         | Meters from the camera beyond which a tile’s plants are hidden, e.g. `(part) => (part === 'trunks' ? 800 : 2500)`                                    |
 
-A `VegetationFeature` is `{ id?, geometry, height?, kind?, properties }` with a GeoJSON `Point` / `MultiPoint` (single plants) or `Polygon` / `MultiPolygon` (woods, scrub); bushes grow where `isBush(feature)` — its `kind` one of `BUSH_KINDS` — trees elsewhere. Parts: `crowns`, `trunks`, `bushes` (instanced), and yours. `plantShapes()` gives the shared `trunk` and `crown` geometries (a bush is a crown) — never dispose them. The members every layer has are in the [reference](/three-map-terrain/api/layers/).
+A `VegetationFeature` is `{ id?, geometry, height?, kind?, properties }` with a GeoJSON `Point` / `MultiPoint` (single plants) or `Polygon` / `MultiPolygon` (woods, scrub); bushes grow where `isBush(feature)` — its `kind` one of `BUSH_KINDS` — trees elsewhere. Parts: `crowns`, `trunks`, `bushes` (instanced), and yours. `plantShapes()` gives the shared `trunk` and `crown` geometries (a bush is a crown) — never dispose them. The members every layer has are in the [reference](/geospatial-scene-engine/api/layers/).

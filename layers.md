@@ -83,13 +83,13 @@ map.focus = camera.position // or controls.target: followed as it moves
 
 ## The layers
 
-| Layer                                                 | Draws                                                                           |
-| ----------------------------------------------------- | ------------------------------------------------------------------------------- |
-| [`Buildings`](/three-map-terrain/layers/buildings/)   | Footprints extruded on the terrain: walls, roofs, floors, edges                 |
-| [`Roads`](/three-map-terrain/layers/roads/)           | Roads and railways lying on the terrain; bridges as decks on piers              |
-| [`Water`](/three-map-terrain/layers/water/)           | Lakes, the sea and rivers lying on the terrain; waterways as ribbons            |
-| [`Vegetation`](/three-map-terrain/layers/vegetation/) | Woods of trees and scrub of bushes, single trees and bushes — or what you plant |
-| [`TerrainBase`](/three-map-terrain/layers/base/)      | Side walls and a bottom: the terrain as a solid block                           |
-| [`FeatureLayer`](/three-map-terrain/own-layers/)      | Your own: any source, your geometry, kept in step with the terrain              |
+| Layer                                                       | Draws                                                                           |
+| ----------------------------------------------------------- | ------------------------------------------------------------------------------- |
+| [`Buildings`](/geospatial-scene-engine/layers/buildings/)   | Footprints extruded on the terrain: walls, roofs, floors, edges                 |
+| [`Roads`](/geospatial-scene-engine/layers/roads/)           | Roads and railways lying on the terrain; bridges as decks on piers              |
+| [`Water`](/geospatial-scene-engine/layers/water/)           | Lakes, the sea and rivers lying on the terrain; waterways as ribbons            |
+| [`Vegetation`](/geospatial-scene-engine/layers/vegetation/) | Woods of trees and scrub of bushes, single trees and bushes — or what you plant |
+| [`TerrainBase`](/geospatial-scene-engine/layers/base/)      | Side walls and a bottom: the terrain as a solid block                           |
+| [`FeatureLayer`](/geospatial-scene-engine/own-layers/)      | Your own: any source, your geometry, kept in step with the terrain              |
 
-Each takes a `source` — a preset, vector tiles of yours, Overpass or a `load` of your own ([Sources](/three-map-terrain/sources/#buildings-roads-water-vegetation--a-provider-read-through-a-schema)) — a `material` ([Materials](/three-map-terrain/materials/)), a `build` to replace or extend its geometry ([Your own layers](/three-map-terrain/own-layers/)), and `maxDistance` to hide it far from the camera ([Performance](/three-map-terrain/performance/)). Their shared members are in the [reference](/three-map-terrain/api/layers/).
+Each takes a `source` — a preset, vector tiles of yours, Overpass or a `load` of your own ([Sources](/geospatial-scene-engine/sources/#buildings-roads-water-vegetation--a-provider-read-through-a-schema)) — a `material` ([Materials](/geospatial-scene-engine/materials/)), a `build` to replace or extend its geometry ([Your own layers](/geospatial-scene-engine/own-layers/)), and `maxDistance` to hide it far from the camera ([Performance](/geospatial-scene-engine/performance/)). Their shared members are in the [reference](/geospatial-scene-engine/api/layers/).

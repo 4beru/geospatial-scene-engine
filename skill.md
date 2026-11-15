@@ -7,20 +7,20 @@ An [agent skill](https://agentskills.io) is a `SKILL.md` a coding agent loads wh
 * **The model** — the grid of tiles, Z up, units and true scale, local coordinates, the lifecycle (`init`, `whenReady`, `clean`).
 * **Recipes** — three.js and React Three Fiber, positions and picking, a city with its layers, sources, materials, a layer of your own, export, large areas, performance.
 * **Pitfalls** — what makes terrain black, invisible or squashed, layers empty, credits missing.
-* **Where to read more** — the type declarations of the installed version, and [these pages as Markdown](/three-map-terrain/llms/).
+* **Where to read more** — the type declarations of the installed version, and [these pages as Markdown](/geospatial-scene-engine/llms/).
 
 ## Install
 
 With the [`skills`](https://github.com/vercel-labs/skills) CLI, from this repository — it asks which agents to install it for:
 
 ```bash
-npx skills add whidrubeld/three-map-terrain
+npx skills add 4beru/geospatial-scene-engine
 ```
 
 Or for one agent, in every project:
 
 ```bash
-npx skills add whidrubeld/three-map-terrain \
+npx skills add 4beru/geospatial-scene-engine \
   --skill three-map-terrain -a claude-code -g
 ```
 
@@ -40,7 +40,7 @@ A `prepare` script — `"prepare": "skills experimental_sync -y"` — keeps it l
 ## Without installing
 
 ```bash
-npx skills use whidrubeld/three-map-terrain@three-map-terrain \
+npx skills use 4beru/geospatial-scene-engine@three-map-terrain \
   --agent claude-code
 ```
 
@@ -48,7 +48,7 @@ starts the agent with the skill; without `--agent` it prints the prompt.
 
 ## The skill
 
-[`skills/three-map-terrain/SKILL.md`](https://github.com/whidrubeld/three-map-terrain/blob/master/skills/three-map-terrain/SKILL.md), as installed:
+[`skills/three-map-terrain/SKILL.md`](https://github.com/4beru/geospatial-scene-engine/blob/master/skills/three-map-terrain/SKILL.md), as installed:
 
 Show the skill
 
@@ -60,7 +60,13 @@ name: three-map-terrain
 description: Build real-world 3D terrain in three.js or React Three Fiber with the three-map-terrain library — elevation and imagery from map tiles, OpenStreetMap buildings, roads and bridges, water and vegetation, layers of your own (FeatureLayer), materials, picking and geolocation, GLB / STL / USDZ export, streaming and levels of detail. Use when code imports three-map-terrain, or when asked to show a real place, a GPS track or map data on 3D terrain, or to make a terrain model to print.
 ---
 
-# three-map-terrain
+# geospatial-scene-engine
+
+This repository is not a separately published npm release. Package names and
+imports remain `three-map-terrain` for compatibility. Clone
+`4beru/geospatial-scene-engine`, run `pnpm install` and `pnpm build`, then run
+`pnpm --dir examples/react dev`. The workspace uses the local library's `dist/`,
+not the upstream npm package.
 
 A three.js library: a `Map` loads elevation and imagery tiles around a place
 and builds a grid of terrain meshes; layers (buildings, roads, water,
@@ -75,15 +81,16 @@ with the package.
   before guessing; check `node_modules/three-map-terrain/package.json` for
   the version.
 - **The documentation**, every page also as Markdown (add `.md`):
-  <https://whidrubeld.github.io/three-map-terrain/llms.txt> lists them,
-  <https://whidrubeld.github.io/three-map-terrain/llms-full.txt> is all of
+  <https://4beru.github.io/geospatial-scene-engine/llms.txt> lists them,
+  <https://4beru.github.io/geospatial-scene-engine/llms-full.txt> is all of
   them. Pages: `getting-started.md`, `layers.md`, `layers/buildings.md`,
   `layers/roads.md`, `layers/water.md`, `layers/vegetation.md`,
   `layers/base.md`, `own-layers.md`, `materials.md`, `sources.md`,
   `export.md`, `large-areas.md`, `performance.md`, `api/map.md`,
   `api/layers.md`, `api/sources.md`, `api/exports.md` — under
-  `https://whidrubeld.github.io/three-map-terrain/`. They describe the latest
-  release; the types describe the installed one.
+  `https://4beru.github.io/geospatial-scene-engine/`. They describe this
+  checkout; local `dist/index.d.ts` describes its build, while installed package
+  types describe the version actually installed.
 
 ## The model
 

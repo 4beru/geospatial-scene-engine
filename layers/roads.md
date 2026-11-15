@@ -18,9 +18,9 @@ const roads = map.addLayer(new Roads({ source: { api: 'openfreemap' } }))
 
 | Option           | Default   | Description                                                                                                                                    |
 | ---------------- | --------- | ---------------------------------------------------------------------------------------------------------------------------------------------- |
-| `source`         | —         | `RoadSource` or its props; [see Sources](/three-map-terrain/sources/#buildings-roads-water-vegetation--a-provider-read-through-a-schema)       |
+| `source`         | —         | `RoadSource` or its props; [see Sources](/geospatial-scene-engine/sources/#buildings-roads-water-vegetation--a-provider-read-through-a-schema) |
 | `material`       | the map’s | The look overriding the map’s (roads in a darker shade of its color, bridges in its color), a `Material`, or `(part) => Material \| undefined` |
-| `build`          | —         | `(ctx, draw) => void`: [replace or extend the geometry](/three-map-terrain/own-layers/#the-built-in-layers-geometry)                           |
+| `build`          | —         | `(ctx, draw) => void`: [replace or extend the geometry](/geospatial-scene-engine/own-layers/#the-built-in-layers-geometry)                     |
 | `kinds`          | all       | The kinds drawn: `ROAD_KINDS` — `motorway`, `trunk`, `primary`, `secondary`, `tertiary`, `minor`, `service`, `track`, `path`, `rail`           |
 | `widths`         | —         | Meters across by kind, for roads the source gives no width                                                                                     |
 | `bridges`        | `true`    | Draw bridges as decks at their own height; `false`: on the terrain                                                                             |
@@ -28,4 +28,4 @@ const roads = map.addLayer(new Roads({ source: { api: 'openfreemap' } }))
 | `minZoom`        | `12`      | Terrain tiles below this zoom get no roads                                                                                                     |
 | `maxDistance`    | —         | Meters from the camera beyond which a tile’s roads are hidden, or `(part) => meters \| undefined`                                              |
 
-A `RoadFeature` is `{ id?, geometry, kind, width?, link?, bridge?, tunnel?, layer?, properties }` with a GeoJSON `LineString` or `MultiLineString` in `[lon, lat]`. Parts: `surface`, `rails`, `deck`, `structure`, `lines`. `width(feature)` gives a road’s meters across. The members every layer has are in the [reference](/three-map-terrain/api/layers/).
+A `RoadFeature` is `{ id?, geometry, kind, width?, link?, bridge?, tunnel?, layer?, properties }` with a GeoJSON `LineString` or `MultiLineString` in `[lon, lat]`. Parts: `surface`, `rails`, `deck`, `structure`, `lines`. `width(feature)` gives a road’s meters across. The members every layer has are in the [reference](/geospatial-scene-engine/api/layers/).

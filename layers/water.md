@@ -13,14 +13,14 @@ const water = map.addLayer(new Water({ source: { api: 'openfreemap' } }))
 
 ## `new Water({ source, ...options })`
 
-| Option           | Default   | Description                                                                                                                               |
-| ---------------- | --------- | ----------------------------------------------------------------------------------------------------------------------------------------- |
-| `source`         | —         | `WaterSource` or its props; [see Sources](/three-map-terrain/sources/#buildings-roads-water-vegetation--a-provider-read-through-a-schema) |
-| `material`       | the map’s | The look overriding the map’s, a `Material`, or `(part) => Material \| undefined`                                                         |
-| `build`          | —         | `(ctx, draw) => void`: [replace or extend the geometry](/three-map-terrain/own-layers/#the-built-in-layers-geometry)                      |
-| `widths`         | —         | Meters across waterways by kind                                                                                                           |
-| `highlightColor` | `#ffb020` | The color of `highlight()`                                                                                                                |
-| `minZoom`        | `10`      | Terrain tiles below this zoom get no water                                                                                                |
-| `maxDistance`    | —         | Meters from the camera beyond which a tile’s water is hidden, or `(part) => meters \| undefined`                                          |
+| Option           | Default   | Description                                                                                                                                     |
+| ---------------- | --------- | ----------------------------------------------------------------------------------------------------------------------------------------------- |
+| `source`         | —         | `WaterSource` or its props; [see Sources](/geospatial-scene-engine/sources/#buildings-roads-water-vegetation--a-provider-read-through-a-schema) |
+| `material`       | the map’s | The look overriding the map’s, a `Material`, or `(part) => Material \| undefined`                                                               |
+| `build`          | —         | `(ctx, draw) => void`: [replace or extend the geometry](/geospatial-scene-engine/own-layers/#the-built-in-layers-geometry)                      |
+| `widths`         | —         | Meters across waterways by kind                                                                                                                 |
+| `highlightColor` | `#ffb020` | The color of `highlight()`                                                                                                                      |
+| `minZoom`        | `10`      | Terrain tiles below this zoom get no water                                                                                                      |
+| `maxDistance`    | —         | Meters from the camera beyond which a tile’s water is hidden, or `(part) => meters \| undefined`                                                |
 
-A `WaterFeature` is `{ id?, geometry, kind?, width?, properties }` with a GeoJSON `Polygon` / `MultiPolygon` (areas, holes are islands) or `LineString` / `MultiLineString` (waterways). Parts: `water`, `lines`. `width(feature)` gives a waterway’s meters across. The members every layer has are in the [reference](/three-map-terrain/api/layers/).
+A `WaterFeature` is `{ id?, geometry, kind?, width?, properties }` with a GeoJSON `Polygon` / `MultiPolygon` (areas, holes are islands) or `LineString` / `MultiLineString` (waterways). Parts: `water`, `lines`. `width(feature)` gives a waterway’s meters across. The members every layer has are in the [reference](/geospatial-scene-engine/api/layers/).

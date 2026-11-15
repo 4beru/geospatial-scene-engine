@@ -1,24 +1,32 @@
-<SYSTEM>This is the complete three-map-terrain documentation, as Markdown.</SYSTEM>
+<SYSTEM>This is the complete geospatial-scene-engine documentation, as Markdown.</SYSTEM>
 
-# <span class="hero-logo" aria-hidden="true"><svg viewBox="0 0 15 9" shape-rendering="crispEdges"><path fill="currentColor" d="M5 0h1v1h-1zM4 1h3v1h-3zM10 1h1v1h-1zM3 2h5v1h-5zM9 2h3v1h-3zM2 3h11v1h-11zM1 4h13v1h-13zM0 5h15v1h-15zM0 7h15v2h-15z"/></svg></span>three-map-terrain
+# <span class="hero-logo" aria-hidden="true"><svg viewBox="0 0 15 9" shape-rendering="crispEdges"><path fill="currentColor" d="M5 0h1v1h-1zM4 1h3v1h-3zM10 1h1v1h-1zM3 2h5v1h-5zM9 2h3v1h-3zM2 3h11v1h-11zM1 4h13v1h-13zM0 5h15v1h-15zM0 7h15v2h-15z"/></svg></span>geospatial-scene-engine
 
 > Real-world 3D terrain for three.js from any map tiles — with buildings, roads and bridges, water and vegetation, and a frame for your own layers.
 
 Real-world 3D terrain for three.js from any map tiles — with buildings, roads and bridges, water and vegetation, and a frame for your own layers.
 
-- [Get started](/three-map-terrain/getting-started/)
-- [Live example](/three-map-terrain/examples/react/)
-- [GitHub](https://github.com/whidrubeld/three-map-terrain)
+- [Get started](/geospatial-scene-engine/getting-started/)
+- [Live example](/geospatial-scene-engine/examples/react/)
+- [GitHub](https://github.com/4beru/geospatial-scene-engine)
 
-[![The live example: the Bernese Alps from Lake Brienz to the Aletsch Glacier as 3D terrain with satellite imagery; the panel shows the geolocation of a click on the terrain](/three-map-terrain/images/hero.webp)](/three-map-terrain/examples/react/?place=alps)
+[![The live example: the Bernese Alps from Lake Brienz to the Aletsch Glacier as 3D terrain with satellite imagery; the panel shows the geolocation of a click on the terrain](/geospatial-scene-engine/images/hero.webp)](/geospatial-scene-engine/examples/react/?place=alps)
 
 Fig. 01The live example · Bernese Alps
 
 Elevation and imagery from any source, OpenStreetMap buildings standing on the terrain and roads lying exactly on it, the geolocation math to put your data there, and model files — GLB, STL, USDZ — to take it anywhere. Every stage is yours to replace: the data, how it is read, the geometry, the materials.
 
+This repository is **geospatial-scene-engine**, not a separately published npm release. The package name and imports remain `three-map-terrain` for compatibility. Run this checkout through its local pnpm workspace:
+
 ```bash
-npm install three three-map-terrain
+git clone https://github.com/4beru/geospatial-scene-engine.git
+cd geospatial-scene-engine
+pnpm install
+pnpm build
+pnpm --dir examples/react dev
 ```
+
+See [Getting started](/geospatial-scene-engine/getting-started/) for the local workspace setup and the distinction from the upstream npm library.
 
 ## Features
 
@@ -26,27 +34,27 @@ npm install three three-map-terrain
 
   [AWS Terrain Tiles](https://registry.opendata.aws/terrain-tiles/), [Mapterhorn](https://mapterhorn.com), Mapbox, MapTiler or your own, at any zoom, as a grid of tiles around a location or any rectangle of tiles.
 
-* **[Buildings](/three-map-terrain/layers/buildings/)**
+* **[Buildings](/geospatial-scene-engine/layers/buildings/)**
 
   OpenStreetMap buildings from [OpenFreeMap](https://openfreemap.org), VersaTiles, MapTiler, Mapbox, Protomaps or the Overpass API, or any data you load ([Overture Maps](https://overturemaps.org) in an example), standing on the rendered terrain.
 
-* **[Roads and bridges](/three-map-terrain/layers/roads/)**
+* **[Roads and bridges](/geospatial-scene-engine/layers/roads/)**
 
   Roads and railways lying exactly on the terrain, cut along its triangles; bridges as decks on piers spanning valleys, joined across tiles; tunnels left out.
 
-* **[Water](/three-map-terrain/layers/water/) and [vegetation](/three-map-terrain/layers/vegetation/)**
+* **[Water](/geospatial-scene-engine/layers/water/) and [vegetation](/geospatial-scene-engine/layers/vegetation/)**
 
   Lakes, the sea and rivers lying on the terrain, islands left land; woods filled with trees and scrub with bushes (instanced), single trees and bushes where they stand — or what you plant.
 
-* **[Your own layers](/three-map-terrain/own-layers/)**
+* **[Your own layers](/geospatial-scene-engine/own-layers/)**
 
   `FeatureLayer` loads the tiles of any source and keeps your geometry in step with the terrain; `TileContext` drapes polygons and lines on it, extrudes them or places your models. The built-in layers are made of it, and you can replace or extend their geometry.
 
-* **[Any look](/three-map-terrain/materials/)**
+* **[Any look](/geospatial-scene-engine/materials/)**
 
   Every part of a layer takes your material, with UVs in meters so that textures repeat at true size; the terrain takes a material factory (PBR, shaders, node materials) and a `process` for its imagery’s pixels. The built-in look — a color, lights, wireframe — is a starting point the layers share.
 
-* **[Any source](/three-map-terrain/sources/)**
+* **[Any source](/geospatial-scene-engine/sources/)**
 
   Every source takes a preset, a `{z}/{x}/{y}` URL template, a TileJSON or your own `load`; a basemap tile is loaded once for all the layers reading it; tiles missing or beyond a source’s zoom are cut out of their ancestors.
 
@@ -54,7 +62,7 @@ npm install three three-map-terrain
 
   The geolocation under the pointer, the building or road there (never one the terrain hides), highlighted over any material.
 
-* **[Diorama base and export](/three-map-terrain/export/)**
+* **[Diorama base and export](/geospatial-scene-engine/export/)**
 
   `TerrainBase` closes the terrain into a solid block; GLB, glTF, OBJ, STL (3D printing) or USDZ (AR) of everything, in meters.
 
@@ -62,11 +70,11 @@ npm install three three-map-terrain
 
   Tiles are stitched to their neighbours the moment they load, and what lies on them follows: no cracks, no walls, no roads floating or sinking.
 
-* **[Large areas, your way](/three-map-terrain/large-areas/)**
+* **[Large areas, your way](/geospatial-scene-engine/large-areas/)**
 
   Tiles loaded ahead of the camera and removed behind it, a detailed middle in coarser rings with skirts closing the steps between them, in a few lines — the policy yours.
 
-* **[Fast, and tunable](/three-map-terrain/performance/)**
+* **[Fast, and tunable](/geospatial-scene-engine/performance/)**
 
   Layers draw a few tiles at a time between frames, picking tests only the triangles under the ray, and the costs are yours to set: imagery detail, layers hidden beyond a distance, and more.
 
@@ -84,37 +92,54 @@ npm install three three-map-terrain
 
 ## One map, four looks
 
-[![Lausanne as a colored model: beige terrain without imagery, white OpenStreetMap buildings with their edges, gray roads and bridges over the Flon valley, the blue lake, woods of trees, on a solid base cut along the lake](/three-map-terrain/images/lausanne-plain.webp)](/three-map-terrain/examples/react/?place=lausanne\&look=plain)
+[![Lausanne as a colored model: beige terrain without imagery, white OpenStreetMap buildings with their edges, gray roads and bridges over the Flon valley, the blue lake, woods of trees, on a solid base cut along the lake](/geospatial-scene-engine/images/lausanne-plain.webp)](/geospatial-scene-engine/examples/react/?place=lausanne\&look=plain)
 
-[Plain a color per part](/three-map-terrain/examples/react/?place=lausanne\&look=plain)
+[Plain a color per part](/geospatial-scene-engine/examples/react/?place=lausanne\&look=plain)
 
-[![Lausanne up close on color aerial imagery: facades with windows a floor apart, asphalt roads with dashed center lines lying on the slopes](/three-map-terrain/images/lausanne-textured.webp)](/three-map-terrain/examples/react/?place=lausanne\&look=textured)
+[![Lausanne up close on color aerial imagery: facades with windows a floor apart, asphalt roads with dashed center lines lying on the slopes](/geospatial-scene-engine/images/lausanne-textured.webp)](/geospatial-scene-engine/examples/react/?place=lausanne\&look=textured)
 
-[Textured canvas textures, in meters](/three-map-terrain/examples/react/?place=lausanne\&look=textured)
+[Textured canvas textures, in meters](/geospatial-scene-engine/examples/react/?place=lausanne\&look=textured)
 
-[![The same Lausanne with swisstopo aerial imagery in grayscale under white buildings and roads](/three-map-terrain/images/lausanne-aerial.webp)](/three-map-terrain/examples/react/?place=lausanne\&look=aerial)
+[![The same Lausanne with swisstopo aerial imagery in grayscale under white buildings and roads](/geospatial-scene-engine/images/lausanne-aerial.webp)](/geospatial-scene-engine/examples/react/?place=lausanne\&look=aerial)
 
-[Aerial a process of the pixels](/three-map-terrain/examples/react/?place=lausanne\&look=aerial)
+[Aerial a process of the pixels](/geospatial-scene-engine/examples/react/?place=lausanne\&look=aerial)
 
-[![The same Lausanne in wireframe: the terrain's triangles, the buildings' and the base's edges, the roads' center lines, the trees' outlines, over a light fill](/three-map-terrain/images/lausanne-wireframe.webp)](/three-map-terrain/examples/react/?place=lausanne\&look=wireframe)
+[![The same Lausanne in wireframe: the terrain's triangles, the buildings' and the base's edges, the roads' center lines, the trees' outlines, over a light fill](/geospatial-scene-engine/images/lausanne-wireframe.webp)](/geospatial-scene-engine/examples/react/?place=lausanne\&look=wireframe)
 
-[Wireframe over a light fill](/three-map-terrain/examples/react/?place=lausanne\&look=wireframe)
+[Wireframe over a light fill](/geospatial-scene-engine/examples/react/?place=lausanne\&look=wireframe)
 
-The [live example](/three-map-terrain/examples/) — a small tool in React Three Fiber: any area of the world, picked on an OpenStreetMap map, its layers switched on and off, one map in four looks, exported as GLB, STL, OBJ or USDZ. Every view is a link.
+The [live example](/geospatial-scene-engine/examples/) — a small tool in React Three Fiber: any area of the world, picked on an OpenStreetMap map, its layers switched on and off, one map in four looks, exported as GLB, STL, OBJ or USDZ. Every view is a link.
 
 ## For AI assistants
 
-Every page is also Markdown: add `.md` to its URL, or use **Copy page** above its title. [`llms.txt`](/three-map-terrain/llms.txt) lists them, [`llms-full.txt`](/three-map-terrain/llms-full.txt) is all of them in one file — [LLMs](/three-map-terrain/llms/). For agents that load skills, Claude Code, Codex, Cursor and more, the [agent skill](/three-map-terrain/skill/) has the essentials:
+Every page is also Markdown: add `.md` to its URL, or use **Copy page** above its title. [`llms.txt`](/geospatial-scene-engine/llms.txt) lists them, [`llms-full.txt`](/geospatial-scene-engine/llms-full.txt) is all of them in one file — [LLMs](/geospatial-scene-engine/llms/). For agents that load skills, Claude Code, Codex, Cursor and more, the [agent skill](/geospatial-scene-engine/skill/) has the essentials:
 
 ```bash
-npx skills add whidrubeld/three-map-terrain
+npx skills add 4beru/geospatial-scene-engine
 ```
 
 # Getting started
 
 > Install three-map-terrain, put real-world terrain in a three.js scene, find positions on it and use it with React Three Fiber.
 
-## Install
+## Run this checkout
+
+**geospatial-scene-engine is not a separately published npm release.** The package name and imports remain `three-map-terrain` for compatibility. To use this repository’s code, clone it and build the local workspace (Node 24 and the pnpm version pinned in `package.json`):
+
+```bash
+git clone https://github.com/4beru/geospatial-scene-engine.git
+cd geospatial-scene-engine
+pnpm install
+pnpm build
+pnpm --dir examples/react dev
+# or: pnpm --dir docs dev
+```
+
+The examples and docs depend on `three-map-terrain: workspace:*` and resolve the root library’s built `dist/`. Rebuild after library source changes.
+
+## Published library alternative
+
+The following installs the actual upstream npm library, not this checkout:
 
 ```bash
 npm install three three-map-terrain
@@ -155,7 +180,7 @@ renderer.setAnimationLoop(() => {
 
 Built-in materials react to lights: add an `AmbientLight` and a `DirectionalLight`, or pass `material: { lights: false }`.
 
-A `Map` is a grid of tiles — `nTiles × nTiles` (3 by default) at `zoom` (11) around `location`, or any rectangle of tiles as `grid` — and `map.terrain` is a `Group` with a mesh per tile. Its [options](/three-map-terrain/api/map/) set the size, detail and vertical scale.
+A `Map` is a grid of tiles — `nTiles × nTiles` (3 by default) at `zoom` (11) around `location`, or any rectangle of tiles as `grid` — and `map.terrain` is a `Group` with a mesh per tile. Its [options](/geospatial-scene-engine/api/map/) set the size, detail and vertical scale.
 
 ## Put things on the map
 
@@ -263,10 +288,10 @@ export default function App() {
 
 ## Next
 
-* [Layers](/three-map-terrain/layers/) — buildings, roads and bridges, water, vegetation and a base.
-* [Materials](/three-map-terrain/materials/) — the look, the imagery’s pixels, your own materials.
-* [Sources](/three-map-terrain/sources/) — imagery, elevation and features from any server.
-* [Examples](/three-map-terrain/examples/) — the live example, plain three.js, and a full app.
+* [Layers](/geospatial-scene-engine/layers/) — buildings, roads and bridges, water, vegetation and a base.
+* [Materials](/geospatial-scene-engine/materials/) — the look, the imagery’s pixels, your own materials.
+* [Sources](/geospatial-scene-engine/sources/) — imagery, elevation and features from any server.
+* [Examples](/geospatial-scene-engine/examples/) feature React Three Fiber and plain three.js.
 
 # Layers
 
@@ -353,16 +378,16 @@ map.focus = camera.position // or controls.target: followed as it moves
 
 ## The layers
 
-| Layer                                                 | Draws                                                                           |
-| ----------------------------------------------------- | ------------------------------------------------------------------------------- |
-| [`Buildings`](/three-map-terrain/layers/buildings/)   | Footprints extruded on the terrain: walls, roofs, floors, edges                 |
-| [`Roads`](/three-map-terrain/layers/roads/)           | Roads and railways lying on the terrain; bridges as decks on piers              |
-| [`Water`](/three-map-terrain/layers/water/)           | Lakes, the sea and rivers lying on the terrain; waterways as ribbons            |
-| [`Vegetation`](/three-map-terrain/layers/vegetation/) | Woods of trees and scrub of bushes, single trees and bushes — or what you plant |
-| [`TerrainBase`](/three-map-terrain/layers/base/)      | Side walls and a bottom: the terrain as a solid block                           |
-| [`FeatureLayer`](/three-map-terrain/own-layers/)      | Your own: any source, your geometry, kept in step with the terrain              |
+| Layer                                                       | Draws                                                                           |
+| ----------------------------------------------------------- | ------------------------------------------------------------------------------- |
+| [`Buildings`](/geospatial-scene-engine/layers/buildings/)   | Footprints extruded on the terrain: walls, roofs, floors, edges                 |
+| [`Roads`](/geospatial-scene-engine/layers/roads/)           | Roads and railways lying on the terrain; bridges as decks on piers              |
+| [`Water`](/geospatial-scene-engine/layers/water/)           | Lakes, the sea and rivers lying on the terrain; waterways as ribbons            |
+| [`Vegetation`](/geospatial-scene-engine/layers/vegetation/) | Woods of trees and scrub of bushes, single trees and bushes — or what you plant |
+| [`TerrainBase`](/geospatial-scene-engine/layers/base/)      | Side walls and a bottom: the terrain as a solid block                           |
+| [`FeatureLayer`](/geospatial-scene-engine/own-layers/)      | Your own: any source, your geometry, kept in step with the terrain              |
 
-Each takes a `source` — a preset, vector tiles of yours, Overpass or a `load` of your own ([Sources](/three-map-terrain/sources/#buildings-roads-water-vegetation--a-provider-read-through-a-schema)) — a `material` ([Materials](/three-map-terrain/materials/)), a `build` to replace or extend its geometry ([Your own layers](/three-map-terrain/own-layers/)), and `maxDistance` to hide it far from the camera ([Performance](/three-map-terrain/performance/)). Their shared members are in the [reference](/three-map-terrain/api/layers/).
+Each takes a `source` — a preset, vector tiles of yours, Overpass or a `load` of your own ([Sources](/geospatial-scene-engine/sources/#buildings-roads-water-vegetation--a-provider-read-through-a-schema)) — a `material` ([Materials](/geospatial-scene-engine/materials/)), a `build` to replace or extend its geometry ([Your own layers](/geospatial-scene-engine/own-layers/)), and `maxDistance` to hide it far from the camera ([Performance](/geospatial-scene-engine/performance/)). Their shared members are in the [reference](/geospatial-scene-engine/api/layers/).
 
 # Buildings
 
@@ -380,24 +405,24 @@ const buildings = map.addLayer(
 * **Once, whole.** A building is drawn by the terrain tile its center lies in, so one crossing a tile border is drawn once and never cut. Vector tiles cut buildings at their borders: the pieces of one (the same stretch of the border from both sides, the same height) are joined again as their tiles load. Sources whose tiles are coarser than the terrain (most stop at zoom 14) are loaded once for the terrain tiles they cover.
 * **Cut at the edge.** With `clip` (default) buildings end with the grid: those crossing its edge are cut along it, and the parts of buildings outside that reach in are drawn — a clean section on a `TerrainBase`.
 * **Data.** Heights, minimum heights and colors come from the source: OSM `height`, `building:levels` (3 m each; of several sections — `9;10`, `9,10` — the highest), `min_height`, `building:colour`; vector tiles with these precomputed. Outlines that have `building:part`s are left to the parts. Buildings without a height get `defaultHeight` — so do those above 1000 m, which no building reaches: a data error.
-* **Parts.** Every tile has a mesh of `walls` (UVs in meters along and up), `roofs`, `floors` and the `edges` (lines, with `edges` or in wireframe) — each can have [its own material](/three-map-terrain/materials/). The edges begin at the ground, not under it: in wireframe the bottom outline runs along the terrain.
+* **Parts.** Every tile has a mesh of `walls` (UVs in meters along and up), `roofs`, `floors` and the `edges` (lines, with `edges` or in wireframe) — each can have [its own material](/geospatial-scene-engine/materials/). The edges begin at the ground, not under it: in wireframe the bottom outline runs along the terrain.
 
 ## `new Buildings({ source, ...options })`
 
-| Option           | Default   | Description                                                                                                                                               |
-| ---------------- | --------- | --------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `source`         | —         | `BuildingSource` or its props; [see Sources](/three-map-terrain/sources/#buildings-roads-water-vegetation--a-provider-read-through-a-schema)              |
-| `material`       | the map’s | `Partial<MaterialOptions>` overriding the map’s look, a `Material` for the faces, or `(part) => Material \| undefined` per part                           |
-| `build`          | —         | `(ctx, draw) => void`: [replace or extend the geometry](/three-map-terrain/own-layers/#the-built-in-layers-geometry)                                      |
-| `edges`          | `false`   | Outline solid buildings with their edges, in a darker shade                                                                                               |
-| `clip`           | `true`    | Cut buildings at the edge of the grid, and draw the parts of those outside that reach in                                                                  |
-| `featureColors`  | `false`   | Draw buildings in the color the source gives them (OSM `building:colour`)                                                                                 |
-| `highlightColor` | `#ffb020` | The color of `highlight()`                                                                                                                                |
-| `defaultHeight`  | `6`       | Meters, for buildings without a height, or with one above 1000 m (a data error)                                                                           |
-| `minZoom`        | `13`      | Terrain tiles below this zoom get no buildings                                                                                                            |
-| `maxDistance`    | —         | Meters from the camera beyond which a tile’s buildings are hidden, or `(part) => meters \| undefined`; see [Performance](/three-map-terrain/performance/) |
+| Option           | Default   | Description                                                                                                                                                     |
+| ---------------- | --------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `source`         | —         | `BuildingSource` or its props; [see Sources](/geospatial-scene-engine/sources/#buildings-roads-water-vegetation--a-provider-read-through-a-schema)              |
+| `material`       | the map’s | `Partial<MaterialOptions>` overriding the map’s look, a `Material` for the faces, or `(part) => Material \| undefined` per part                                 |
+| `build`          | —         | `(ctx, draw) => void`: [replace or extend the geometry](/geospatial-scene-engine/own-layers/#the-built-in-layers-geometry)                                      |
+| `edges`          | `false`   | Outline solid buildings with their edges, in a darker shade                                                                                                     |
+| `clip`           | `true`    | Cut buildings at the edge of the grid, and draw the parts of those outside that reach in                                                                        |
+| `featureColors`  | `false`   | Draw buildings in the color the source gives them (OSM `building:colour`)                                                                                       |
+| `highlightColor` | `#ffb020` | The color of `highlight()`                                                                                                                                      |
+| `defaultHeight`  | `6`       | Meters, for buildings without a height, or with one above 1000 m (a data error)                                                                                 |
+| `minZoom`        | `13`      | Terrain tiles below this zoom get no buildings                                                                                                                  |
+| `maxDistance`    | —         | Meters from the camera beyond which a tile’s buildings are hidden, or `(part) => meters \| undefined`; see [Performance](/geospatial-scene-engine/performance/) |
 
-A `BuildingFeature` is `{ id?, geometry, height?, minHeight?, color?, properties }` with a GeoJSON `Polygon` or `MultiPolygon` in `[lon, lat]`. Parts: `walls`, `roofs`, `floors`, `edges`. The members every layer has are in the [reference](/three-map-terrain/api/layers/).
+A `BuildingFeature` is `{ id?, geometry, height?, minHeight?, color?, properties }` with a GeoJSON `Polygon` or `MultiPolygon` in `[lon, lat]`. Parts: `walls`, `roofs`, `floors`, `edges`. The members every layer has are in the [reference](/geospatial-scene-engine/api/layers/).
 
 # Roads and bridges
 
@@ -419,9 +444,9 @@ const roads = map.addLayer(new Roads({ source: { api: 'openfreemap' } }))
 
 | Option           | Default   | Description                                                                                                                                    |
 | ---------------- | --------- | ---------------------------------------------------------------------------------------------------------------------------------------------- |
-| `source`         | —         | `RoadSource` or its props; [see Sources](/three-map-terrain/sources/#buildings-roads-water-vegetation--a-provider-read-through-a-schema)       |
+| `source`         | —         | `RoadSource` or its props; [see Sources](/geospatial-scene-engine/sources/#buildings-roads-water-vegetation--a-provider-read-through-a-schema) |
 | `material`       | the map’s | The look overriding the map’s (roads in a darker shade of its color, bridges in its color), a `Material`, or `(part) => Material \| undefined` |
-| `build`          | —         | `(ctx, draw) => void`: [replace or extend the geometry](/three-map-terrain/own-layers/#the-built-in-layers-geometry)                           |
+| `build`          | —         | `(ctx, draw) => void`: [replace or extend the geometry](/geospatial-scene-engine/own-layers/#the-built-in-layers-geometry)                     |
 | `kinds`          | all       | The kinds drawn: `ROAD_KINDS` — `motorway`, `trunk`, `primary`, `secondary`, `tertiary`, `minor`, `service`, `track`, `path`, `rail`           |
 | `widths`         | —         | Meters across by kind, for roads the source gives no width                                                                                     |
 | `bridges`        | `true`    | Draw bridges as decks at their own height; `false`: on the terrain                                                                             |
@@ -429,7 +454,7 @@ const roads = map.addLayer(new Roads({ source: { api: 'openfreemap' } }))
 | `minZoom`        | `12`      | Terrain tiles below this zoom get no roads                                                                                                     |
 | `maxDistance`    | —         | Meters from the camera beyond which a tile’s roads are hidden, or `(part) => meters \| undefined`                                              |
 
-A `RoadFeature` is `{ id?, geometry, kind, width?, link?, bridge?, tunnel?, layer?, properties }` with a GeoJSON `LineString` or `MultiLineString` in `[lon, lat]`. Parts: `surface`, `rails`, `deck`, `structure`, `lines`. `width(feature)` gives a road’s meters across. The members every layer has are in the [reference](/three-map-terrain/api/layers/).
+A `RoadFeature` is `{ id?, geometry, kind, width?, link?, bridge?, tunnel?, layer?, properties }` with a GeoJSON `LineString` or `MultiLineString` in `[lon, lat]`. Parts: `surface`, `rails`, `deck`, `structure`, `lines`. `width(feature)` gives a road’s meters across. The members every layer has are in the [reference](/geospatial-scene-engine/api/layers/).
 
 # Water
 
@@ -446,17 +471,17 @@ const water = map.addLayer(new Water({ source: { api: 'openfreemap' } }))
 
 ## `new Water({ source, ...options })`
 
-| Option           | Default   | Description                                                                                                                               |
-| ---------------- | --------- | ----------------------------------------------------------------------------------------------------------------------------------------- |
-| `source`         | —         | `WaterSource` or its props; [see Sources](/three-map-terrain/sources/#buildings-roads-water-vegetation--a-provider-read-through-a-schema) |
-| `material`       | the map’s | The look overriding the map’s, a `Material`, or `(part) => Material \| undefined`                                                         |
-| `build`          | —         | `(ctx, draw) => void`: [replace or extend the geometry](/three-map-terrain/own-layers/#the-built-in-layers-geometry)                      |
-| `widths`         | —         | Meters across waterways by kind                                                                                                           |
-| `highlightColor` | `#ffb020` | The color of `highlight()`                                                                                                                |
-| `minZoom`        | `10`      | Terrain tiles below this zoom get no water                                                                                                |
-| `maxDistance`    | —         | Meters from the camera beyond which a tile’s water is hidden, or `(part) => meters \| undefined`                                          |
+| Option           | Default   | Description                                                                                                                                     |
+| ---------------- | --------- | ----------------------------------------------------------------------------------------------------------------------------------------------- |
+| `source`         | —         | `WaterSource` or its props; [see Sources](/geospatial-scene-engine/sources/#buildings-roads-water-vegetation--a-provider-read-through-a-schema) |
+| `material`       | the map’s | The look overriding the map’s, a `Material`, or `(part) => Material \| undefined`                                                               |
+| `build`          | —         | `(ctx, draw) => void`: [replace or extend the geometry](/geospatial-scene-engine/own-layers/#the-built-in-layers-geometry)                      |
+| `widths`         | —         | Meters across waterways by kind                                                                                                                 |
+| `highlightColor` | `#ffb020` | The color of `highlight()`                                                                                                                      |
+| `minZoom`        | `10`      | Terrain tiles below this zoom get no water                                                                                                      |
+| `maxDistance`    | —         | Meters from the camera beyond which a tile’s water is hidden, or `(part) => meters \| undefined`                                                |
 
-A `WaterFeature` is `{ id?, geometry, kind?, width?, properties }` with a GeoJSON `Polygon` / `MultiPolygon` (areas, holes are islands) or `LineString` / `MultiLineString` (waterways). Parts: `water`, `lines`. `width(feature)` gives a waterway’s meters across. The members every layer has are in the [reference](/three-map-terrain/api/layers/).
+A `WaterFeature` is `{ id?, geometry, kind?, width?, properties }` with a GeoJSON `Polygon` / `MultiPolygon` (areas, holes are islands) or `LineString` / `MultiLineString` (waterways). Parts: `water`, `lines`. `width(feature)` gives a waterway’s meters across. The members every layer has are in the [reference](/geospatial-scene-engine/api/layers/).
 
 # Vegetation
 
@@ -483,7 +508,7 @@ map.addLayer(
 
 ## What grows is yours
 
-The layer plants — where, how dense, clear of `avoid`, never twice; `plant(ctx, spot, feature, plants)` decides what grows at each spot, by the feature’s `kind` or `properties`: `plants.tree(height?)`, `plants.bush(height?)`, copies of your own in parts you name, or nothing. Woods and scrub are all the layer reads by default; read more with the source’s `properties` (or Overpass `query`, [see Sources](/three-map-terrain/sources/#buildings-roads-water-vegetation--a-provider-read-through-a-schema)) — orchards of low trees, heaths of dwarf shrubs:
+The layer plants — where, how dense, clear of `avoid`, never twice; `plant(ctx, spot, feature, plants)` decides what grows at each spot, by the feature’s `kind` or `properties`: `plants.tree(height?)`, `plants.bush(height?)`, copies of your own in parts you name, or nothing. Woods and scrub are all the layer reads by default; read more with the source’s `properties` (or Overpass `query`, [see Sources](/geospatial-scene-engine/sources/#buildings-roads-water-vegetation--a-provider-read-through-a-schema)) — orchards of low trees, heaths of dwarf shrubs:
 
 ```ts
 import {
@@ -511,27 +536,27 @@ new Vegetation({
 })
 ```
 
-A spot is `{ x, y, z, random }`: where, in the tile’s coordinates, on the rendered ground, and a number in \[0, 1) that stays the same — for heights, sizes, species. Copies of your own (`ctx.instances(part, geometry).add(matrix)`, e.g. of `plantShapes().crown`) take the crowns’ color unless you give their part a material; they are picked as their area, highlighted and exported like the plants. Grass, fields and other land cover are areas, not plants: drape them in a `build` of yours around `draw`, or in a [layer of your own](/three-map-terrain/own-layers/).
+A spot is `{ x, y, z, random }`: where, in the tile’s coordinates, on the rendered ground, and a number in \[0, 1) that stays the same — for heights, sizes, species. Copies of your own (`ctx.instances(part, geometry).add(matrix)`, e.g. of `plantShapes().crown`) take the crowns’ color unless you give their part a material; they are picked as their area, highlighted and exported like the plants. Grass, fields and other land cover are areas, not plants: drape them in a `build` of yours around `draw`, or in a [layer of your own](/geospatial-scene-engine/own-layers/).
 
 ## `new Vegetation({ source, ...options })`
 
-| Option           | Default   | Description                                                                                                                                    |
-| ---------------- | --------- | ---------------------------------------------------------------------------------------------------------------------------------------------- |
-| `source`         | —         | `VegetationSource` or its props; [see Sources](/three-map-terrain/sources/#buildings-roads-water-vegetation--a-provider-read-through-a-schema) |
-| `material`       | the map’s | The look overriding the map’s, a `Material`, or `(part) => Material \| undefined`                                                              |
-| `build`          | —         | `(ctx, draw) => void`: [replace or extend the geometry](/three-map-terrain/own-layers/#the-built-in-layers-geometry)                           |
-| `plant`          | —         | `(ctx, spot, feature, { tree, bush }) => void`: [what grows at a spot](#what-grows-is-yours)                                                   |
-| `avoid`          | `[]`      | Layers whose ground stays clear of plants                                                                                                      |
-| `clearance`      | `2`       | Meters a plant keeps from what `avoid` drew                                                                                                    |
-| `spacing`        | `9`, `5`  | Meters between the plants of an area — 5 in scrub; or `(zoom, feature) => meters`                                                              |
-| `treeHeights`    | `[8, 16]` | Meters, for trees the source gives no height                                                                                                   |
-| `bushHeights`    | `[2, 4]`  | Meters, for bushes the source gives no height                                                                                                  |
-| `maxPerTile`     | `12000`   | Plants per tile; over it a tile is thinned evenly                                                                                              |
-| `highlightColor` | `#ffb020` | The color of `highlight()`                                                                                                                     |
-| `minZoom`        | `14`      | Terrain tiles below this zoom get no plants                                                                                                    |
-| `maxDistance`    | —         | Meters from the camera beyond which a tile’s plants are hidden, e.g. `(part) => (part === 'trunks' ? 800 : 2500)`                              |
+| Option           | Default   | Description                                                                                                                                          |
+| ---------------- | --------- | ---------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `source`         | —         | `VegetationSource` or its props; [see Sources](/geospatial-scene-engine/sources/#buildings-roads-water-vegetation--a-provider-read-through-a-schema) |
+| `material`       | the map’s | The look overriding the map’s, a `Material`, or `(part) => Material \| undefined`                                                                    |
+| `build`          | —         | `(ctx, draw) => void`: [replace or extend the geometry](/geospatial-scene-engine/own-layers/#the-built-in-layers-geometry)                           |
+| `plant`          | —         | `(ctx, spot, feature, { tree, bush }) => void`: [what grows at a spot](#what-grows-is-yours)                                                         |
+| `avoid`          | `[]`      | Layers whose ground stays clear of plants                                                                                                            |
+| `clearance`      | `2`       | Meters a plant keeps from what `avoid` drew                                                                                                          |
+| `spacing`        | `9`, `5`  | Meters between the plants of an area — 5 in scrub; or `(zoom, feature) => meters`                                                                    |
+| `treeHeights`    | `[8, 16]` | Meters, for trees the source gives no height                                                                                                         |
+| `bushHeights`    | `[2, 4]`  | Meters, for bushes the source gives no height                                                                                                        |
+| `maxPerTile`     | `12000`   | Plants per tile; over it a tile is thinned evenly                                                                                                    |
+| `highlightColor` | `#ffb020` | The color of `highlight()`                                                                                                                           |
+| `minZoom`        | `14`      | Terrain tiles below this zoom get no plants                                                                                                          |
+| `maxDistance`    | —         | Meters from the camera beyond which a tile’s plants are hidden, e.g. `(part) => (part === 'trunks' ? 800 : 2500)`                                    |
 
-A `VegetationFeature` is `{ id?, geometry, height?, kind?, properties }` with a GeoJSON `Point` / `MultiPoint` (single plants) or `Polygon` / `MultiPolygon` (woods, scrub); bushes grow where `isBush(feature)` — its `kind` one of `BUSH_KINDS` — trees elsewhere. Parts: `crowns`, `trunks`, `bushes` (instanced), and yours. `plantShapes()` gives the shared `trunk` and `crown` geometries (a bush is a crown) — never dispose them. The members every layer has are in the [reference](/three-map-terrain/api/layers/).
+A `VegetationFeature` is `{ id?, geometry, height?, kind?, properties }` with a GeoJSON `Point` / `MultiPoint` (single plants) or `Polygon` / `MultiPolygon` (woods, scrub); bushes grow where `isBush(feature)` — its `kind` one of `BUSH_KINDS` — trees elsewhere. Parts: `crowns`, `trunks`, `bushes` (instanced), and yours. `plantShapes()` gives the shared `trunk` and `crown` geometries (a bush is a crown) — never dispose them. The members every layer has are in the [reference](/geospatial-scene-engine/api/layers/).
 
 # Diorama base
 
@@ -543,7 +568,7 @@ import { TerrainBase } from 'three-map-terrain'
 map.addLayer(new TerrainBase()) // a solid block
 ```
 
-`TerrainBase` closes the terrain into a solid block — side walls from its outer edges down to `depth` meters below its lowest point, and a bottom — for a cut-out of the world, and a closed model to [print](/three-map-terrain/export/). It is rebuilt as tiles load and are removed: walls stand along every side without a neighbour. In wireframe it is drawn as its outline.
+`TerrainBase` closes the terrain into a solid block — side walls from its outer edges down to `depth` meters below its lowest point, and a bottom — for a cut-out of the world, and a closed model to [print](/geospatial-scene-engine/export/). It is rebuilt as tiles load and are removed: walls stand along every side without a neighbour. In wireframe it is drawn as its outline.
 
 ## `new TerrainBase({ depth?, material? })`
 
@@ -558,7 +583,7 @@ With `Buildings` (`clip`, the default) buildings end with the grid too: those cr
 
 > FeatureLayer loads the tiles of any source and keeps your geometry in step with the terrain; TileContext drapes, extrudes and places models on it.
 
-`FeatureLayer` is what `Buildings` and `Roads` are made of: give it a source of features and a `build` that draws a terrain tile; it loads the source’s tiles (shared, cancelled when unused), draws every tile when its features arrive, and again when the heights it read change. What you draw goes into named parts — one object per part and tile, each with [its material](/three-map-terrain/materials/) — and what you wrap in `ctx.feature()` can be picked and highlighted.
+`FeatureLayer` is what `Buildings` and `Roads` are made of: give it a source of features and a `build` that draws a terrain tile; it loads the source’s tiles (shared, cancelled when unused), draws every tile when its features arrive, and again when the heights it read change. What you draw goes into named parts — one object per part and tile, each with [its material](/geospatial-scene-engine/materials/) — and what you wrap in `ctx.feature()` can be picked and highlighted.
 
 ```ts
 import { Color, Group } from 'three'
@@ -924,7 +949,7 @@ water.setMaterial(undefined) // the map's look again
 
 Only what a hidden material left out — lines out of wireframe, copies of a hidden part — is drawn when it shows, a few tiles at a time.
 
-The live example’s looks are all made this way: aerial and wireframe from the options and a `process` ([looks.ts](https://github.com/whidrubeld/three-map-terrain/blob/master/examples/react/src/looks.ts)), plain from [a color per part](https://github.com/whidrubeld/three-map-terrain/blob/master/examples/react/src/colored.ts), textured from [a few canvas textures on the parts](https://github.com/whidrubeld/three-map-terrain/blob/master/examples/react/src/textured.ts) — and a part hidden where the photo has it already (`new MeshBasicMaterial({ visible: false })`).
+The live example’s looks are all made this way: aerial and wireframe from the options and a `process` ([looks.ts](https://github.com/4beru/geospatial-scene-engine/blob/master/examples/react/src/looks.ts)), plain from [a color per part](https://github.com/4beru/geospatial-scene-engine/blob/master/examples/react/src/colored.ts), textured from [a few canvas textures on the parts](https://github.com/4beru/geospatial-scene-engine/blob/master/examples/react/src/textured.ts) — and a part hidden where the photo has it already (`new MeshBasicMaterial({ visible: false })`).
 
 ## Options
 
@@ -1056,13 +1081,13 @@ new BuildingSource({
 })
 ```
 
-The [basic example](https://github.com/whidrubeld/three-map-terrain/blob/master/examples/basic/src/overture.ts) loads the [Overture Maps](https://overturemaps.org) buildings — OpenStreetMap merged with Microsoft, Google and Esri footprints — from their PMTiles archive this way, in a few lines. Your own layers take any `FeatureSource` — an object with `minZoom`, `maxZoom`, `attribution` and `load(tile)` — or a `TileFeatureSource` with a schema of your own.
+The [basic example](https://github.com/4beru/geospatial-scene-engine/blob/master/examples/basic/src/overture.ts) loads the [Overture Maps](https://overturemaps.org) buildings — OpenStreetMap merged with Microsoft, Google and Esri footprints — from their PMTiles archive this way, in a few lines. Your own layers take any `FeatureSource` — an object with `minZoom`, `maxZoom`, `attribution` and `load(tile)` — or a `TileFeatureSource` with a schema of your own.
 
 ## Loading
 
 Tiles are fetched with CORS. Network errors, HTTP 408/425/429/5xx and bodies that cannot be decoded (tile servers occasionally send truncated images with status 200) are retried up to three times with backoff, bypassing the HTTP cache. A texture that still cannot be decoded is drawn as far as it arrived; an elevation tile never is, since partial heights would be bogus terrain. A missing tile (404) falls back to its ancestors, up to six levels — the browser still logs the 404. Vector tiles that are missing are empty.
 
-Show the credits of the data you use: `map.attributions` lists them — see [Data and attribution](/three-map-terrain/attribution/).
+Show the credits of the data you use: `map.attributions` lists them — see [Data and attribution](/geospatial-scene-engine/attribution/).
 
 # Export
 
@@ -1077,7 +1102,7 @@ link.download = 'lausanne.glb'
 link.click()
 ```
 
-`map.export()` waits for everything to be loaded, then writes the terrain with its imagery and every layer in meters — true to scale horizontally, heights with the map’s exaggeration. glTF, OBJ and USDZ are Y-up as their tools expect, STL stays Z-up for slicers; with a [`TerrainBase`](/three-map-terrain/layers/base/) the terrain is a solid block, and the buildings stand in it — what a slicer needs to print a city.
+`map.export()` waits for everything to be loaded, then writes the terrain with its imagery and every layer in meters — true to scale horizontally, heights with the map’s exaggeration. glTF, OBJ and USDZ are Y-up as their tools expect, STL stays Z-up for slicers; with a [`TerrainBase`](/geospatial-scene-engine/layers/base/) the terrain is a solid block, and the buildings stand in it — what a slicer needs to print a city.
 
 Materials become `MeshStandardMaterial`s with their color, texture and vertex colors; highlights are left out. Instanced copies — trees, bushes, your own — stay instanced in glTF (`EXT_mesh_gpu_instancing`) and become one mesh of every copy in STL, OBJ and USDZ. Roads lie flush on the terrain: in a model without polygon offsets they may flicker, and for printing they add nothing — leave them out with `layers: false` or remove the layer first.
 
@@ -1174,7 +1199,7 @@ The library keeps the main thread free on its own: layers draw a few tiles at a 
 | `imageryZoomOffset`                                                      | Imagery requests and texture memory per tile: `4^offset` tiles — `0` a quarter of the default’s, `2` four times (sharper)                                                                 |
 | layers’ `maxDistance`                                                    | Hides a layer’s objects on tiles farther than this many meters from the camera, every frame — per part too: `(part) => (part === 'trunks' ? 800 : 2500)`. Drawn and exported all the same |
 | `map.focus`                                                              | Where the layers draw first: `camera.position` or the controls’ `target`                                                                                                                  |
-| `removeTileSegment`, `alignTo`                                           | Tiles near the camera only, coarser ones farther away: [Large areas](/three-map-terrain/large-areas/)                                                                                     |
+| `removeTileSegment`, `alignTo`                                           | Tiles near the camera only, coarser ones farther away: [Large areas](/geospatial-scene-engine/large-areas/)                                                                               |
 | `Roads` `kinds`, `Vegetation` `spacing`, `maxPerTile`, layers’ `minZoom` | Fewer features: e.g. no footpaths, sparser woods on a wide map, no layer below a zoom                                                                                                     |
 | `Buildings` `edges`, `wireframe`, `fillOpacity`                          | Lines are extra draw calls and vertices; a transparent fill is drawn after everything else                                                                                                |
 | `lights: false`                                                          | Unlit `MeshBasicMaterial`s for the terrain and the layers’ look                                                                                                                           |
@@ -1184,34 +1209,28 @@ And three.js’ own: a pixel ratio of at most 2 (`renderer.setPixelRatio(Math.mi
 
 # Examples
 
-> The live example in React Three Fiber, the basic example in plain three.js with Overture buildings, and GPX Terrain, a full app built with the library.
+> The live example in React Three Fiber and the basic example in plain three.js with Overture buildings, built from this repository's local library.
 
 ## Live example
 
-[A small tool in React Three Fiber](https://github.com/whidrubeld/three-map-terrain/tree/master/examples/react): any area of the world, picked on an OpenStreetMap map, its layers switched on and off, one map in four looks — plain ([colored](https://github.com/whidrubeld/three-map-terrain/blob/master/examples/react/src/colored.ts) by part), [textured](https://github.com/whidrubeld/three-map-terrain/blob/master/examples/react/src/textured.ts) (a few canvas textures on the layers’ parts), aerial in grayscale (a `process` of the imagery), wireframe over a light fill — exported as GLB, STL, OBJ or USDZ. **[Open it](/three-map-terrain/examples/react/)**, or one of its views:
+[A small tool in React Three Fiber](https://github.com/4beru/geospatial-scene-engine/tree/master/examples/react): any area of the world, picked on an OpenStreetMap map, its layers switched on and off, one map in four looks — plain ([colored](https://github.com/4beru/geospatial-scene-engine/blob/master/examples/react/src/colored.ts) by part), [textured](https://github.com/4beru/geospatial-scene-engine/blob/master/examples/react/src/textured.ts) (a few canvas textures on the layers’ parts), aerial in grayscale (a `process` of the imagery), wireframe over a light fill — exported as GLB, STL, OBJ or USDZ. **[Open it](/geospatial-scene-engine/examples/react/)**, or one of its views:
 
-|                                                                                                                                                                                                                                                                                                                                               |                                                                                                                                                                                                                                                   |
-| --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| [![Lausanne as a colored model: beige terrain without imagery, white OpenStreetMap buildings with their edges, gray roads and bridges over the Flon valley, the blue lake, woods of trees, on a solid base cut along the lake](/three-map-terrain/images/lausanne-plain.webp)](/three-map-terrain/examples/react/?place=lausanne\&look=plain) | [![The Bernese Alps from Lake Brienz to the Aletsch Glacier as 3D terrain with satellite imagery; the panel shows the geolocation of a click on the terrain](/three-map-terrain/images/hero.webp)](/three-map-terrain/examples/react/?place=alps) |
+|                                                                                                                                                                                                                                                                                                                                                           |                                                                                                                                                                                                                                                               |
+| --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| [![Lausanne as a colored model: beige terrain without imagery, white OpenStreetMap buildings with their edges, gray roads and bridges over the Flon valley, the blue lake, woods of trees, on a solid base cut along the lake](/geospatial-scene-engine/images/lausanne-plain.webp)](/geospatial-scene-engine/examples/react/?place=lausanne\&look=plain) | [![The Bernese Alps from Lake Brienz to the Aletsch Glacier as 3D terrain with satellite imagery; the panel shows the geolocation of a click on the terrain](/geospatial-scene-engine/images/hero.webp)](/geospatial-scene-engine/examples/react/?place=alps) |
 
-Every view is a link — the page keeps it in the query: `place` (`lausanne`, `alps`), or any other area by its middle `lat`, `lon`, its zoom `z` (8–16) and its tiles `w` × `h` (1–5); `ex` (vertical exaggeration), `look` (`plain`, `aerial`, `textured`, `wireframe`), `imagery` (`sentinel`, `swisstopo`), `layers` (e.g. `buildings,roads`), `pick` (opens the area picker). Mount Everest, textured: [`?lat=27.98808&lon=86.92529&z=12&w=5&h=3&look=textured&layers=water,base`](/three-map-terrain/examples/react/?lat=27.98808\&lon=86.92529\&z=12\&w=5\&h=3\&look=textured\&layers=water,base).
+Every view is a link — the page keeps it in the query: `place` (`lausanne`, `alps`), or any other area by its middle `lat`, `lon`, its zoom `z` (8–16) and its tiles `w` × `h` (1–5); `ex` (vertical exaggeration), `look` (`plain`, `aerial`, `textured`, `wireframe`), `imagery` (`sentinel`, `swisstopo`), `layers` (e.g. `buildings,roads`), `pick` (opens the area picker). Mount Everest, textured: [`?lat=27.98808&lon=86.92529&z=12&w=5&h=3&look=textured&layers=water,base`](/geospatial-scene-engine/examples/react/?lat=27.98808\&lon=86.92529\&z=12\&w=5\&h=3\&look=textured\&layers=water,base).
 
 ## Basic
 
-[![The basic example: downtown San Francisco, Overture buildings and OpenFreeMap roads on a toned-down OpenStreetMap map, a tower highlighted](/three-map-terrain/images/basic.webp)](/three-map-terrain/examples/basic/)
+[![The basic example: downtown San Francisco, Overture buildings and OpenFreeMap roads on a toned-down OpenStreetMap map, a tower highlighted](/geospatial-scene-engine/images/basic.webp)](/geospatial-scene-engine/examples/basic/)
 
-[Plain three.js, bundled with webpack](https://github.com/whidrubeld/three-map-terrain/tree/master/examples/basic): downtown San Francisco at zoom 15, true to scale. **[Open it](/three-map-terrain/examples/basic/)**.
+[Plain three.js, bundled with webpack](https://github.com/4beru/geospatial-scene-engine/tree/master/examples/basic): downtown San Francisco at zoom 15, true to scale. **[Open it](/geospatial-scene-engine/examples/basic/)**.
 
-* **A custom building source** ([overture.ts](https://github.com/whidrubeld/three-map-terrain/blob/master/examples/basic/src/overture.ts)): the [Overture Maps](https://overturemaps.org) buildings — OpenStreetMap merged with Microsoft, Google and Esri footprints — read from their PMTiles archive with the [`pmtiles`](https://www.npmjs.com/package/pmtiles) package and turned into buildings by `buildingsFromVectorTile` with the built-in `overtureProperties`. Any data the library has no preset for plugs in the same way.
+* **A custom building source** ([overture.ts](https://github.com/4beru/geospatial-scene-engine/blob/master/examples/basic/src/overture.ts)): the [Overture Maps](https://overturemaps.org) buildings — OpenStreetMap merged with Microsoft, Google and Esri footprints — read from their PMTiles archive with the [`pmtiles`](https://www.npmjs.com/package/pmtiles) package and turned into buildings by `buildingsFromVectorTile` with the built-in `overtureProperties`. Any data the library has no preset for plugs in the same way.
 * The OpenStreetMap map toned down to the buildings by a few lines of `material.process`, buildings with their `edges`, OpenFreeMap roads (the freeways’ bridges rise from their ends over the flat downtown), and a `TerrainBase`.
 * A click: the building under the pointer (`buildings.pick`), highlighted with its Overture name and height — or the geolocation of the terrain (`map.pick`).
 * **Download GLB / STL** with `map.export()`.
-
-## GPX Terrain
-
-[![GPX Terrain: the Stelvio Pass road draped on wireframe terrain, with track details, a legend, an elevation profile and the card of the point under the cursor](https://raw.githubusercontent.com/whidrubeld/gpx-terrain/master/docs/hero.webp)](https://whidrubeld.github.io/gpx-terrain/)
-
-[A full app](https://whidrubeld.github.io/gpx-terrain/) on the library, in React, React Three Fiber and TanStack Store: GPX tracks draped on terrain, an elevation profile, playback, picking, imagery and wireframe at runtime. Its code is [on GitHub](https://github.com/whidrubeld/gpx-terrain).
 
 # LLMs
 
@@ -1221,7 +1240,7 @@ These pages are written for people and coding agents alike. Every one of them is
 
 ## Every page as Markdown
 
-Add `.md` to a page’s address: [`/three-map-terrain/materials/`](/three-map-terrain/materials/) is also [`/three-map-terrain/materials.md`](/three-map-terrain/materials.md). The Markdown is the rendered page flattened — components become their text, a live demo becomes its code — and each page points to it with `<link rel="alternate" type="text/markdown">`, so agents that look for it find it.
+Add `.md` to a page’s address: [`/geospatial-scene-engine/materials/`](/geospatial-scene-engine/materials/) is also [`/geospatial-scene-engine/materials.md`](/geospatial-scene-engine/materials.md). The Markdown is the rendered page flattened — components become their text, a live demo becomes its code — and each page points to it with `<link rel="alternate" type="text/markdown">`, so agents that look for it find it.
 
 Above every title, **Copy page** puts that Markdown on the clipboard; its menu also opens it as text, or in a new chat in ChatGPT, Claude, Gemini, GitHub Copilot or Perplexity.
 
@@ -1229,33 +1248,33 @@ Above every title, **Copy page** puts that Markdown on the clipboard; its menu a
 
 Following [llmstxt.org](https://llmstxt.org):
 
-| File                                                 | What                                                                      | For                                                                       |
-| ---------------------------------------------------- | ------------------------------------------------------------------------- | ------------------------------------------------------------------------- |
-| [`/llms.txt`](/three-map-terrain/llms.txt)           | The index: the library in a sentence, then every page with its summary    | An agent that fetches what it needs — give it this address                |
-| [`/llms-full.txt`](/three-map-terrain/llms-full.txt) | Every page in one Markdown file, in the order of the guide (about 100 KB) | A model with a long context, a tool that indexes docs by URL, offline use |
+| File                                                       | What                                                                      | For                                                                       |
+| ---------------------------------------------------------- | ------------------------------------------------------------------------- | ------------------------------------------------------------------------- |
+| [`/llms.txt`](/geospatial-scene-engine/llms.txt)           | The index: the library in a sentence, then every page with its summary    | An agent that fetches what it needs — give it this address                |
+| [`/llms-full.txt`](/geospatial-scene-engine/llms-full.txt) | Every page in one Markdown file, in the order of the guide (about 100 KB) | A model with a long context, a tool that indexes docs by URL, offline use |
 
 The guide comes first in both, the reference after it. Prompts that work:
 
 ```text
-Read https://whidrubeld.github.io/three-map-terrain/llms.txt, then add
+Read https://4beru.github.io/geospatial-scene-engine/llms.txt, then add
 OpenStreetMap buildings and roads to the map in src/scene.ts.
 ```
 
 ```text
-Using https://whidrubeld.github.io/three-map-terrain/layers/vegetation.md,
+Using https://4beru.github.io/geospatial-scene-engine/layers/vegetation.md,
 plant orchards with low trees on my map.
 ```
 
 ## The API of your version
 
-The pages describe the latest release. The package’s type declarations describe the one you installed — every export with its documentation comment: `node_modules/three-map-terrain/dist/index.d.ts`, or [the latest on unpkg](https://unpkg.com/three-map-terrain/dist/index.d.ts). An agent unsure of an option’s name or a signature should read them before guessing.
+These pages describe the geospatial-scene-engine checkout, which is not a separately published npm release. Build the local workspace with `pnpm build` and read `dist/index.d.ts` for its API. The compatible package name and imports remain `three-map-terrain`. If using the upstream npm library instead, read `node_modules/three-map-terrain/dist/index.d.ts` for the version actually installed. An agent unsure of an option’s name or a signature should read the matching declarations before guessing.
 
 ## The agent skill
 
-For agents that load skills — Claude Code, Codex, Cursor and many more — [the skill](/three-map-terrain/skill/) is this documentation’s essentials in one file: the model, recipes, pitfalls, and where to read more. One command installs it:
+For agents that load skills — Claude Code, Codex, Cursor and many more — [the skill](/geospatial-scene-engine/skill/) is this documentation’s essentials in one file: the model, recipes, pitfalls, and where to read more. One command installs it:
 
 ```bash
-npx skills add whidrubeld/three-map-terrain
+npx skills add 4beru/geospatial-scene-engine
 ```
 
 # Agent skill
@@ -1267,20 +1286,20 @@ An [agent skill](https://agentskills.io) is a `SKILL.md` a coding agent loads wh
 * **The model** — the grid of tiles, Z up, units and true scale, local coordinates, the lifecycle (`init`, `whenReady`, `clean`).
 * **Recipes** — three.js and React Three Fiber, positions and picking, a city with its layers, sources, materials, a layer of your own, export, large areas, performance.
 * **Pitfalls** — what makes terrain black, invisible or squashed, layers empty, credits missing.
-* **Where to read more** — the type declarations of the installed version, and [these pages as Markdown](/three-map-terrain/llms/).
+* **Where to read more** — the type declarations of the installed version, and [these pages as Markdown](/geospatial-scene-engine/llms/).
 
 ## Install
 
 With the [`skills`](https://github.com/vercel-labs/skills) CLI, from this repository — it asks which agents to install it for:
 
 ```bash
-npx skills add whidrubeld/three-map-terrain
+npx skills add 4beru/geospatial-scene-engine
 ```
 
 Or for one agent, in every project:
 
 ```bash
-npx skills add whidrubeld/three-map-terrain \
+npx skills add 4beru/geospatial-scene-engine \
   --skill three-map-terrain -a claude-code -g
 ```
 
@@ -1300,7 +1319,7 @@ A `prepare` script — `"prepare": "skills experimental_sync -y"` — keeps it l
 ## Without installing
 
 ```bash
-npx skills use whidrubeld/three-map-terrain@three-map-terrain \
+npx skills use 4beru/geospatial-scene-engine@three-map-terrain \
   --agent claude-code
 ```
 
@@ -1308,7 +1327,7 @@ starts the agent with the skill; without `--agent` it prints the prompt.
 
 ## The skill
 
-[`skills/three-map-terrain/SKILL.md`](https://github.com/whidrubeld/three-map-terrain/blob/master/skills/three-map-terrain/SKILL.md), as installed:
+[`skills/three-map-terrain/SKILL.md`](https://github.com/4beru/geospatial-scene-engine/blob/master/skills/three-map-terrain/SKILL.md), as installed:
 
 Show the skill
 
@@ -1320,7 +1339,13 @@ name: three-map-terrain
 description: Build real-world 3D terrain in three.js or React Three Fiber with the three-map-terrain library — elevation and imagery from map tiles, OpenStreetMap buildings, roads and bridges, water and vegetation, layers of your own (FeatureLayer), materials, picking and geolocation, GLB / STL / USDZ export, streaming and levels of detail. Use when code imports three-map-terrain, or when asked to show a real place, a GPS track or map data on 3D terrain, or to make a terrain model to print.
 ---
 
-# three-map-terrain
+# geospatial-scene-engine
+
+This repository is not a separately published npm release. Package names and
+imports remain `three-map-terrain` for compatibility. Clone
+`4beru/geospatial-scene-engine`, run `pnpm install` and `pnpm build`, then run
+`pnpm --dir examples/react dev`. The workspace uses the local library's `dist/`,
+not the upstream npm package.
 
 A three.js library: a `Map` loads elevation and imagery tiles around a place
 and builds a grid of terrain meshes; layers (buildings, roads, water,
@@ -1335,15 +1360,16 @@ with the package.
   before guessing; check `node_modules/three-map-terrain/package.json` for
   the version.
 - **The documentation**, every page also as Markdown (add `.md`):
-  <https://whidrubeld.github.io/three-map-terrain/llms.txt> lists them,
-  <https://whidrubeld.github.io/three-map-terrain/llms-full.txt> is all of
+  <https://4beru.github.io/geospatial-scene-engine/llms.txt> lists them,
+  <https://4beru.github.io/geospatial-scene-engine/llms-full.txt> is all of
   them. Pages: `getting-started.md`, `layers.md`, `layers/buildings.md`,
   `layers/roads.md`, `layers/water.md`, `layers/vegetation.md`,
   `layers/base.md`, `own-layers.md`, `materials.md`, `sources.md`,
   `export.md`, `large-areas.md`, `performance.md`, `api/map.md`,
   `api/layers.md`, `api/sources.md`, `api/exports.md` — under
-  `https://whidrubeld.github.io/three-map-terrain/`. They describe the latest
-  release; the types describe the installed one.
+  `https://4beru.github.io/geospatial-scene-engine/`. They describe this
+  checkout; local `dist/index.d.ts` describes its build, while installed package
+  types describe the version actually installed.
 
 ## The model
 
@@ -1650,17 +1676,17 @@ Roads `kinds`, Vegetation `spacing` / `maxPerTile`, a pixel ratio of at most 2.
 * `decodeVectorTile`, `gunzip` — the vector tile (MVT) decoder.
 * `exportModel`, `MODEL_TYPES`, `expandTileUrl`.
 
-Every export is documented in the package’s type declarations: [`dist/index.d.ts`](https://unpkg.com/three-map-terrain/dist/index.d.ts).
+Every export is documented in the local build’s `dist/index.d.ts`. Build this checkout with `pnpm build` to generate its declarations. The compatible package and import name remains `three-map-terrain`.
 
 # Layer members
 
 > The members every layer shares — pick, highlight, setMaterial, maxDistance, the ground it covers — and new FeatureLayer(), the frame of them all.
 
-The options of each layer are on its page: [`Buildings`](/three-map-terrain/layers/buildings/#new-buildings-source-options-), [`Roads`](/three-map-terrain/layers/roads/#new-roads-source-options-), [`Water`](/three-map-terrain/layers/water/#new-water-source-options-), [`Vegetation`](/three-map-terrain/layers/vegetation/#new-vegetation-source-options-), [`TerrainBase`](/three-map-terrain/layers/base/#new-terrainbase-depth-material-).
+The options of each layer are on its page: [`Buildings`](/geospatial-scene-engine/layers/buildings/#new-buildings-source-options-), [`Roads`](/geospatial-scene-engine/layers/roads/#new-roads-source-options-), [`Water`](/geospatial-scene-engine/layers/water/#new-water-source-options-), [`Vegetation`](/geospatial-scene-engine/layers/vegetation/#new-vegetation-source-options-), [`TerrainBase`](/geospatial-scene-engine/layers/base/#new-terrainbase-depth-material-).
 
 ## `new FeatureLayer({ source, build?, material?, highlightColor?, minZoom?, maxDistance?, name? })`
 
-The frame of the layers — [Your own layers](/three-map-terrain/own-layers/). `source` is any `FeatureSource`; `name` names the group and its objects (`'<name> <part> <z/x/y>'`).
+The frame of the layers — [Your own layers](/geospatial-scene-engine/own-layers/). `source` is any `FeatureSource`; `name` names the group and its objects (`'<name> <part> <z/x/y>'`).
 
 ## Members
 
@@ -1689,7 +1715,7 @@ And the ground they take (`GroundCover`, what `Vegetation`’s `avoid` reads):
 
 ## `MapLayer`
 
-What the map talks to — every method optional: `attribution`, `attach(map)`, `tileLoaded(tile)`, `tileChanged(tile)`, `tileRemoved(tile)`, `materialChanged(map)`, `whenReady()`, `detach(map)`. [Your own layers](/three-map-terrain/own-layers/#maplayer).
+What the map talks to — every method optional: `attribution`, `attach(map)`, `tileLoaded(tile)`, `tileChanged(tile)`, `tileRemoved(tile)`, `materialChanged(map)`, `whenReady()`, `detach(map)`. [Your own layers](/geospatial-scene-engine/own-layers/#maplayer).
 
 # Map
 
@@ -1697,30 +1723,30 @@ What the map talks to — every method optional: `attribution`, `attach(map)`, `
 
 ## `new Map({ location, source?, elevation?, options?, material? })`
 
-| Prop        | Type                                      | Description                                                                                 |
-| ----------- | ----------------------------------------- | ------------------------------------------------------------------------------------------- |
-| `location`  | `{ lat: number; lon: number }`            | Its tile is the origin of the coordinates, and the middle of the `nTiles` grid              |
-| `source`    | `Source \| SourceProps`                   | Imagery; [see Sources](/three-map-terrain/sources/#imagery--source). Without it, none       |
-| `elevation` | `ElevationSource \| ElevationSourceProps` | Elevation; [AWS Terrain Tiles](/three-map-terrain/sources/#elevation--elevation) by default |
-| `options`   | `Partial<MapOptions>`                     | See below                                                                                   |
-| `material`  | `Partial<TerrainMaterialOptions>`         | [Materials](/three-map-terrain/materials/#options)                                          |
+| Prop        | Type                                      | Description                                                                                       |
+| ----------- | ----------------------------------------- | ------------------------------------------------------------------------------------------------- |
+| `location`  | `{ lat: number; lon: number }`            | Its tile is the origin of the coordinates, and the middle of the `nTiles` grid                    |
+| `source`    | `Source \| SourceProps`                   | Imagery; [see Sources](/geospatial-scene-engine/sources/#imagery--source). Without it, none       |
+| `elevation` | `ElevationSource \| ElevationSourceProps` | Elevation; [AWS Terrain Tiles](/geospatial-scene-engine/sources/#elevation--elevation) by default |
+| `options`   | `Partial<MapOptions>`                     | See below                                                                                         |
+| `material`  | `Partial<TerrainMaterialOptions>`         | [Materials](/geospatial-scene-engine/materials/#options)                                          |
 
 ### `MapOptions`
 
 Defaults in `defaultMapOptions`.
 
-| Option              | Default | Description                                                                                                                                                                                      |
-| ------------------- | ------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `nTiles`            | `3`     | The grid is `nTiles × nTiles` tiles                                                                                                                                                              |
-| `grid`              | —       | The grid as any rectangle of tiles at `zoom` instead, inclusive: `{ minX, minY, maxX, maxY }` (`nTiles` is ignored). [Large areas](/three-map-terrain/large-areas/)                              |
-| `zoom`              | `11`    | Zoom level of the terrain tiles; the imagery’s is `zoom + imageryZoomOffset`                                                                                                                     |
-| `tileSize`          | `600`   | Size of a tile in scene units                                                                                                                                                                    |
-| `tileSegments`      | `100`   | Segments per tile side (`PlaneGeometry`), 1–256                                                                                                                                                  |
-| `zScale`            | `0.045` | Scene units per meter of elevation. True scale is `tileSize / Utils.tileWidth(lat, zoom)`; the default is true scale at zoom 11 around 46°                                                       |
-| `exaggeration`      | —       | Vertical exaggeration relative to true scale (`1`: true to scale); when set, it decides `zScale`                                                                                                 |
-| `baseAltitude`      | `0`     | Altitude in meters drawn at z = 0                                                                                                                                                                |
-| `imageryZoomOffset` | `1`     | A tile is textured with `4^offset` imagery tiles stitched into one: `0` its own (a quarter of the requests and memory), `1` its four children, `2` sixteen (sharper); 0–3                        |
-| `skirt`             | `0`     | Meters a strip hangs straight down from every tile’s edge, in its material: it closes the steps to another map ([levels of detail](/three-map-terrain/large-areas/#levels-of-detail)); `0`: none |
+| Option              | Default | Description                                                                                                                                                                                            |
+| ------------------- | ------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `nTiles`            | `3`     | The grid is `nTiles × nTiles` tiles                                                                                                                                                                    |
+| `grid`              | —       | The grid as any rectangle of tiles at `zoom` instead, inclusive: `{ minX, minY, maxX, maxY }` (`nTiles` is ignored). [Large areas](/geospatial-scene-engine/large-areas/)                              |
+| `zoom`              | `11`    | Zoom level of the terrain tiles; the imagery’s is `zoom + imageryZoomOffset`                                                                                                                           |
+| `tileSize`          | `600`   | Size of a tile in scene units                                                                                                                                                                          |
+| `tileSegments`      | `100`   | Segments per tile side (`PlaneGeometry`), 1–256                                                                                                                                                        |
+| `zScale`            | `0.045` | Scene units per meter of elevation. True scale is `tileSize / Utils.tileWidth(lat, zoom)`; the default is true scale at zoom 11 around 46°                                                             |
+| `exaggeration`      | —       | Vertical exaggeration relative to true scale (`1`: true to scale); when set, it decides `zScale`                                                                                                       |
+| `baseAltitude`      | `0`     | Altitude in meters drawn at z = 0                                                                                                                                                                      |
+| `imageryZoomOffset` | `1`     | A tile is textured with `4^offset` imagery tiles stitched into one: `0` its own (a quarter of the requests and memory), `1` its four children, `2` sixteen (sharper); 0–3                              |
+| `skirt`             | `0`     | Meters a strip hangs straight down from every tile’s edge, in its material: it closes the steps to another map ([levels of detail](/geospatial-scene-engine/large-areas/#levels-of-detail)); `0`: none |
 
 ## Members
 
@@ -1739,13 +1765,13 @@ Positions are in `map.terrain` coordinates: X east, Y north, Z up. Transforms of
 | `pick(raycaster)`                                                         | `{ lat, lon, alt, point } \| undefined` | The terrain hit by a ray, e.g. after `raycaster.setFromCamera(pointer, camera)`; `point` in world coordinates                                                                             |
 | `setSource(source)`                                                       | `void`                                  | Replaces the imagery (`{ api: 'none' }` turns it off); each tile keeps its texture until the new one arrives                                                                              |
 | `setMaterial(options)`                                                    | `void`                                  | Changes the material options of the terrain and the layers that follow it — their materials, in place; a new `process` reloads the imagery                                                |
-| `addLayer(layer)`, `removeLayer(layer)`, `layers`                         |                                         | [Layers](/three-map-terrain/layers/): buildings, roads, base, yours. Layers survive `clean()`                                                                                             |
-| `export(format?, options?)`                                               | `Promise<Blob>`                         | [A model file](/three-map-terrain/export/) of everything                                                                                                                                  |
+| `addLayer(layer)`, `removeLayer(layer)`, `layers`                         |                                         | [Layers](/geospatial-scene-engine/layers/): buildings, roads, base, yours. Layers survive `clean()`                                                                                       |
+| `export(format?, options?)`                                               | `Promise<Blob>`                         | [A model file](/geospatial-scene-engine/export/) of everything                                                                                                                            |
 | `attributions`                                                            | `string[]`                              | The credits of the sources and layers in use — show them with the map                                                                                                                     |
 | `bounds`, `grid`                                                          |                                         | The grid as `[west, south, east, north]` in degrees, and in tiles                                                                                                                         |
 | `addTileSegment(x, y)`                                                    | `Promise<void>`                         | Loads one more tile of the grid’s zoom                                                                                                                                                    |
-| `removeTileSegment(x, y)`                                                 | `boolean`                               | Removes a tile: the layers let go of it, a pending load is aborted, its resources freed. Whether there was one. [Streaming](/three-map-terrain/large-areas/#streaming)                    |
-| `alignTo(map)`                                                            | `void`                                  | Sets the transform of `terrain` so that this map lines up with another — any zoom, tile size, vertical scale. [Levels of detail](/three-map-terrain/large-areas/#levels-of-detail)        |
+| `removeTileSegment(x, y)`                                                 | `boolean`                               | Removes a tile: the layers let go of it, a pending load is aborted, its resources freed. Whether there was one. [Streaming](/geospatial-scene-engine/large-areas/#streaming)              |
+| `alignTo(map)`                                                            | `void`                                  | Sets the transform of `terrain` so that this map lines up with another — any zoom, tile size, vertical scale. [Levels of detail](/geospatial-scene-engine/large-areas/#levels-of-detail)  |
 | `clean()`                                                                 | `void`                                  | Removes the tiles, aborts pending requests, disposes geometries, materials and textures. `init()` can be called again                                                                     |
 | `ready`, `options`, `materialOptions`, `tileCache`, `source`, `elevation` |                                         | Whether `init()` finished, the resolved options, the loaded `Tile`s by `z/x/y`, the sources                                                                                               |
 
@@ -1761,9 +1787,9 @@ With React Three Fiber, pointer events already carry the hit: `map.getLocation(m
 * `new VectorTiles(props)` — a vector tile provider (`api`, `url` or `tilejson`, `schema`); `load(tile)` → `VectorTileData` with `layer(name)`; `VectorTiles.preset(api, token?)` is the instance layers share.
 * `new Overpass({ endpoint? })` — `query(ql, signal)`, one request at a time per endpoint.
 
-All take the props shown in [Sources](/three-map-terrain/sources/); `Map`, `Buildings`, `Roads` and the others also take the props directly.
+All take the props shown in [Sources](/geospatial-scene-engine/sources/); `Map`, `Buildings`, `Roads` and the others also take the props directly.
 
-A `FeatureSource` — what [your own layers](/three-map-terrain/own-layers/) take — is any object with `minZoom`, `maxZoom`, `attribution?` and `load(tile)` returning the features of a tile; `tile` is `{ z, x, y, signal }`.
+A `FeatureSource` — what [your own layers](/geospatial-scene-engine/own-layers/) take — is any object with `minZoom`, `maxZoom`, `attribution?` and `load(tile)` returning the features of a tile; `tile` is `{ z, x, y, signal }`.
 
 # Data and attribution
 
