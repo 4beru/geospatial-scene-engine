@@ -162,7 +162,7 @@ pnpm --dir examples/react dev    # vite, port 5173 (the live example)
 ```
 
 The docs' demos: `pnpm build`, then `pnpm --dir docs dev` (port 4321,
-`/three-map-terrain/`): Getting started, Layers, Your own layers and
+`/geospatial-scene-engine/`): Getting started, Layers, Your own layers and
 Materials each have one — **Run the demo**, wait for the tiles, click in it
 (status line), switch the looks on Materials, in both themes.
 
@@ -190,12 +190,8 @@ errors about aborted requests.
   Khronos glTF validator (`npx gltf-validator file.glb`, or its npm API):
   0 errors, the textures embedded.
 
-The heaviest user of the library is the GPX Terrain app
-([whidrubeld/gpx-terrain](https://github.com/whidrubeld/gpx-terrain)): for
-changes to positions, picking or materials, also run it against the local
-build (linked with its package manager, e.g. `pnpm link ../three-map-terrain`
-there) with its
-`verify-app` skill.
+For changes to positions, picking or materials, exercise both examples against
+the local workspace build, not the upstream npm package.
 
 ## 4. Report
 

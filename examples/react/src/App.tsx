@@ -249,7 +249,7 @@ export default function App() {
         <>
           <aside className='panel'>
             <header>
-              <h1>three-map-terrain</h1>
+              <h1>geospatial-scene-engine</h1>
               <button
                 type='button'
                 className='fold'
@@ -372,17 +372,11 @@ export default function App() {
                 </p>
                 <p className='muted'>Drag to pan, right-drag to rotate.</p>
                 <nav>
-                  <a href='https://whidrubeld.github.io/three-map-terrain/'>
+                  <a href='https://4beru.github.io/geospatial-scene-engine/'>
                     Docs
                   </a>
-                  <a href='https://github.com/whidrubeld/three-map-terrain'>
+                  <a href='https://github.com/4beru/geospatial-scene-engine'>
                     GitHub
-                  </a>
-                  <a href='https://www.npmjs.com/package/three-map-terrain'>
-                    npm
-                  </a>
-                  <a href='https://whidrubeld.github.io/gpx-terrain/'>
-                    GPX Terrain — the showcase
                   </a>
                 </nav>
               </>

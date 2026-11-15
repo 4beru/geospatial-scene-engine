@@ -1,8 +1,8 @@
-# three-map-terrain · basic example
+# geospatial-scene-engine · basic example
 
 Plain [three.js](https://threejs.org), bundled with webpack: downtown
 **San Francisco** at zoom 15, true to scale —
-[live on GitHub Pages](https://whidrubeld.github.io/three-map-terrain/examples/basic/).
+[live on GitHub Pages](https://4beru.github.io/geospatial-scene-engine/examples/basic/).
 
 What it shows ([src/index.ts](src/index.ts)):
 
@@ -23,7 +23,8 @@ What it shows ([src/index.ts](src/index.ts)):
   (`map.pick`).
 - **Download GLB / STL** with `map.export()`.
 
-`three-map-terrain` is the repository root, a package of the same pnpm
+This checkout is not a separately published npm release. The root library keeps
+the package name `three-map-terrain` and is a package of the same pnpm
 workspace (`workspace:*`), so build the library first:
 
 ```bash

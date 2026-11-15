@@ -1,16 +1,18 @@
 # AGENTS.md
 
-Guidance for AI coding agents working on **three-map-terrain** — a
+Guidance for AI coding agents working on **geospatial-scene-engine**, a
 TypeScript library that builds 3D terrain for [three.js](https://threejs.org)
 from map tiles of any source (elevation, imagery), layers on it (buildings,
 roads and bridges from vector tiles / OpenStreetMap, and users' own), and
-exports them as model files. Published to npm as `three-map-terrain`.
+exports them as model files. This checkout is not a separately published npm
+release. Keep the compatible package name and imports `three-map-terrain` and
+use the local pnpm workspace build, not an npm install, to run this repository.
 
 **Design principle (3.0):** the library is a frame with extension points
 at every stage — source (provider), schema (parsing), geometry (`build`),
 material (per part, terrain factory, imagery `process`) — not a collection
 of looks. Built-in looks (color, lights, wireframe) are defaults; effects
-such as grayscale imagery live in the examples and in GPX Terrain. Prefer
+such as grayscale imagery live in the examples. Prefer
 an extension point over a built-in effect, and keep the core small: what
 only one layer needs stays in that layer.
 
@@ -98,7 +100,7 @@ docs/                     the documentation (GitHub Pages): Astro Starlight, its
 scripts/screenshots.mjs   renders the images: README's from the built examples,
                           demo posters from the built docs (Chrome + cwebp)
 skills/three-map-terrain  the users' agent skill (SKILL.md): `npx skills add
-                          whidrubeld/three-map-terrain`, shipped in the npm package
+                          4beru/geospatial-scene-engine`, shipped in the npm package
 .skills/                  contributor skills (symlinked as .claude/skills),
                           `metadata.internal` so `npx skills` hides them
 ```
@@ -121,15 +123,15 @@ One pnpm workspace (`pnpm-workspace.yaml`), one `pnpm-lock.yaml`: the root
 is the library, `docs/` and `examples/*` are packages that depend on it as
 `three-map-terrain: workspace:*` and use its `dist/` — run `pnpm build` in
 the root before building them. pnpm is pinned by `packageManager`. In
-`docs/`: `pnpm dev` (http://localhost:4321/three-map-terrain/), `pnpm build`
+`docs/`: `pnpm dev` (http://localhost:4321/geospatial-scene-engine/), `pnpm build`
 (`astro check`, pages, `.md` twins, llms.txt, link validation); from the
 root, `pnpm --dir docs build`. Dependencies with build scripts need an
 `allowBuilds` entry in `pnpm-workspace.yaml` (none do yet).
 
-The full app built with the library — **GPX Terrain**, a GPX viewer and the
-library's showcase and the source of the docs' look — lives in its own repository,
-[whidrubeld/gpx-terrain](https://github.com/whidrubeld/gpx-terrain), and
-depends on the published package. After a release, bump it there.
+The project repository is `4beru/geospatial-scene-engine`. Pages serves the docs
+at `/geospatial-scene-engine/` and the React app at
+`/geospatial-scene-engine/examples/react/`. Deployment builds `master` and
+publishes the generated site to `gh-pages`.
 
 ## How it works (read before touching src/)
 
@@ -488,7 +490,7 @@ spot, feature, { tree, bush })` what grows there — `tree(height?)`,
 
 ## Documentation (`docs/`)
 
-The user documentation is the site, <https://whidrubeld.github.io/three-map-terrain/>;
+The user documentation is the site, <https://4beru.github.io/geospatial-scene-engine/>;
 the README is its storefront (features, install, quick start, links).
 
 - **Pages** (`docs/src/content/docs/`): one topic each, Markdown with a
@@ -507,9 +509,9 @@ the README is its storefront (features, install, quick start, links).
   and it replaces a dev server already running) — restart it after
   changing `expressiveCode` or the Markdown pipeline.
 - **Links** between pages are absolute with the base,
-  `/three-map-terrain/materials/#anchor`; `starlight-links-validator`
+  `/geospatial-scene-engine/materials/#anchor`; `starlight-links-validator`
   fails the build on a dead page or anchor. The examples are apps of
-  their own under `/three-map-terrain/examples/{react,basic}/` (excluded
+  their own under `/geospatial-scene-engine/examples/{react,basic}/` (excluded
   from validation); files in the repo are GitHub URLs.
 - **Demos**: `<Demo name='lausanne' title='…' />` in an `.mdx` page runs
   `src/demos/lausanne.ts` on a click and shows the same file as the code
@@ -535,7 +537,7 @@ the README is its storefront (features, install, quick start, links).
   `dist/index.d.ts` and the docs' `.md` pages. Keep it short and true —
   a change it describes (a default, an option, a pitfall) updates it.
   `npx skills add ./ --list` (the `skills` CLI) must list it and only it.
-- **Look**: GPX Terrain's — black and white, square, JetBrains Mono for
+- **Look**: black and white, square, JetBrains Mono for
   labels and code, Doto for titles, Geist for prose, a dot matrix, pixel
   corner brackets (`.ticks`), dotted rules (`.rule`), HUD labels (`.hud`).
   `src/styles/theme.css` overrides Starlight (its styles are in cascade

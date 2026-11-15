@@ -1,11 +1,9 @@
-# three-map-terrain · React example
+# geospatial-scene-engine · React example
 
 [React Three Fiber](https://r3f.docs.pmnd.rs) + [drei](https://drei.docs.pmnd.rs),
 bundled with [Vite](https://vite.dev). It is the
-[live example](https://whidrubeld.github.io/three-map-terrain/examples/react/) on GitHub
-Pages — a small tool: pick an area anywhere, style it, export a model. For
-a full app built with the library see
-[GPX Terrain](https://github.com/whidrubeld/gpx-terrain).
+[live example](https://4beru.github.io/geospatial-scene-engine/examples/react/) on GitHub
+Pages: a small tool to pick an area anywhere, style it and export a model.
 
 What it shows:
 
@@ -64,7 +62,8 @@ What a link leaves out is the area's default — a preset's own, else
 plain, Sentinel-2 and every layer: `?place=lausanne&look=textured`,
 `?lat=27.98808&lon=86.92529&z=12&w=5&h=3&look=textured&layers=water,base`.
 
-`three-map-terrain` is the repository root, a package of the same pnpm
+This checkout is not a separately published npm release. The root library keeps
+the package name `three-map-terrain` and is a package of the same pnpm
 workspace (`workspace:*`), so build the library first:
 
 ```bash

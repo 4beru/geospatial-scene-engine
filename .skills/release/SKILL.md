@@ -1,76 +1,47 @@
 ---
 name: release
-description: Prepare and publish a new three-map-terrain version to npm — choose the semver bump, update version and docs, verify, tag and create the GitHub release that triggers the publish workflow. Use when asked to release, publish, cut a version, or bump the package version.
+description: Prepare a repository release of geospatial-scene-engine, validate the local workspace and deployed documentation, and distinguish it from the upstream npm package.
 metadata:
   internal: true
 ---
 
-# Release
+# Repository release
 
-Publishing is automated: publishing a **GitHub release** runs
-`.github/workflows/publish-package.yml` (`pnpm validate` → `npm publish --provenance`).
-Never run `npm publish` locally.
+This checkout is `4beru/geospatial-scene-engine`, not a separately published
+npm release. It retains the package name and imports `three-map-terrain` for
+compatibility. Do not assume this repository is authorized to publish that npm
+package, and do not run `npm publish` or trigger an npm publishing workflow.
 
-There is no npm token. npm **trusted publishing** authorizes that workflow by
-its filename (npmjs.com → `three-map-terrain` → Settings → Trusted publishing,
-direct `npm publish` allowed) through GitHub's OIDC token, and adds provenance.
-Renaming the workflow file breaks publishing until the trusted publisher is
-updated on npmjs.com.
+## 1. Prepare
 
-## 1. Pick the bump
+Compare the intended changes with the last repository tag. Update the relevant
+docs, examples and README without renaming the compatible package or altering
+license, copyright or author attribution. Only change the version when requested.
 
-Compare with the last tag (`git describe --tags --abbrev=0`, `git log <tag>..HEAD`).
-
-- **major** — changed/removed public exports, changed behaviour of `Map`,
-  `Tile`, `Source`, `Utils`, `QuadTextureMaterial`, or raised the `three` peer floor
-  (while the library has no users, a minor — see AGENTS.md);
-- **minor** — new options/exports, backwards compatible;
-- **patch** — fixes only.
-
-The public API is everything exported from `src/index.ts`.
-
-## 2. Prepare (on a branch, then PR to `master`)
-
-1. `package.json` → `version`.
-2. The docs (`docs/src/content/docs/`) for any changed API, install/peer
-   notes; `README.md` if the features or the quick start changed.
-3. `pnpm validate && pnpm test:e2e`, then build both examples and the docs
-   (see the `upgrade-dependencies` skill, step 5).
-4. If the examples or the demos look different, refresh the images:
-   `pnpm screenshots` (Google Chrome for GPU rendering, `cwebp`; 1280×800
-   at 2×; `pnpm screenshots demo-alps …` for some) and look at
-   `docs/public/images/*.webp`.
-5. Check the package contents: `npm pack --dry-run` — only `dist/`,
-   `src/` and `skills/` (with their folders), `README.md`, `LICENSE`,
-   `package.json`.
-
-## 3. Publish (needs the user's go-ahead — it is public and irreversible)
-
-After the PR is merged to `master`:
+## 2. Validate
 
 ```bash
-gh release create v<version> --target master --title "v<version>" --notes-file <notes.md>
+pnpm install
+pnpm validate
+pnpm test:e2e
+pnpm --dir examples/basic build
+pnpm --dir examples/react build
+pnpm --dir docs build
 ```
 
-`--target master` creates the tag on GitHub's `master`. When anything breaks,
-start the notes with the breaking changes (renames: old → new);
-`--generate-notes` alone only lists the commits.
+Check the examples against the local workspace library with the
+`verify-rendering` skill. If visuals changed, refresh and inspect the screenshots.
 
-Then watch the workflow: `gh run watch` and confirm
-`npm view three-map-terrain version` shows the new version.
+## 3. Release and deployment
 
-If the publish fails, nothing reached npm and the version is still free: fix
-the cause and rerun the run (`gh run rerun <id>`) or start the workflow on the
-tag (`gh workflow run publish-package.yml --ref v<version>`). A rerun uses the
-workflow file of the tagged commit; if the fix is in the workflow itself, move
-the tag: `gh release delete v<version> --cleanup-tag --yes`, then create the
-release again. Pushing to
-`master` also redeploys the site on GitHub Pages: the docs, with both
-examples under `/examples/`.
+Creating a public tag or GitHub release requires the user's explicit go-ahead.
+Use this repository's `master` branch as the release source. Before creating a
+release, inspect its workflows and confirm it cannot trigger an unauthorized npm
+publication.
 
-## 4. After the release
+Pages deployment builds from `master` and publishes the generated documentation
+and examples to `gh-pages`. Verify the documentation at
+`https://4beru.github.io/geospatial-scene-engine/` and the React example at
+`https://4beru.github.io/geospatial-scene-engine/examples/react/`.
 
-GPX Terrain ([whidrubeld/gpx-terrain](https://github.com/whidrubeld/gpx-terrain))
-uses the published package and appears in the Examples of the README and the docs
-(its own `docs/hero.webp`): bump `three-map-terrain` there (its `release`
-skill) and, if the app looks different, refresh its screenshots.
+Report the commit or tag, checks actually performed and any deployment blockers.

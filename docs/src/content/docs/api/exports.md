@@ -15,4 +15,4 @@ description: Tile math, the Tile class, textures, the drawing builders, schema r
 - `decodeVectorTile`, `gunzip` — the vector tile (MVT) decoder.
 - `exportModel`, `MODEL_TYPES`, `expandTileUrl`.
 
-Every export is documented in the package's type declarations: [`dist/index.d.ts`](https://unpkg.com/three-map-terrain/dist/index.d.ts).
+Every export is documented in the local build's `dist/index.d.ts`. Build this checkout with `pnpm build` to generate its declarations. The compatible package and import name remains `three-map-terrain`.
