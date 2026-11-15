@@ -6,7 +6,7 @@ These pages are written for people and coding agents alike. Every one of them is
 
 ## Every page as Markdown
 
-Add `.md` to a page’s address: [`/three-map-terrain/materials/`](/three-map-terrain/materials/) is also [`/three-map-terrain/materials.md`](/three-map-terrain/materials.md). The Markdown is the rendered page flattened — components become their text, a live demo becomes its code — and each page points to it with `<link rel="alternate" type="text/markdown">`, so agents that look for it find it.
+Add `.md` to a page’s address: [`/geospatial-scene-engine/materials/`](/geospatial-scene-engine/materials/) is also [`/geospatial-scene-engine/materials.md`](/geospatial-scene-engine/materials.md). The Markdown is the rendered page flattened — components become their text, a live demo becomes its code — and each page points to it with `<link rel="alternate" type="text/markdown">`, so agents that look for it find it.
 
 Above every title, **Copy page** puts that Markdown on the clipboard; its menu also opens it as text, or in a new chat in ChatGPT, Claude, Gemini, GitHub Copilot or Perplexity.
 
@@ -14,31 +14,31 @@ Above every title, **Copy page** puts that Markdown on the clipboard; its menu a
 
 Following [llmstxt.org](https://llmstxt.org):
 
-| File                                                 | What                                                                      | For                                                                       |
-| ---------------------------------------------------- | ------------------------------------------------------------------------- | ------------------------------------------------------------------------- |
-| [`/llms.txt`](/three-map-terrain/llms.txt)           | The index: the library in a sentence, then every page with its summary    | An agent that fetches what it needs — give it this address                |
-| [`/llms-full.txt`](/three-map-terrain/llms-full.txt) | Every page in one Markdown file, in the order of the guide (about 100 KB) | A model with a long context, a tool that indexes docs by URL, offline use |
+| File                                                       | What                                                                      | For                                                                       |
+| ---------------------------------------------------------- | ------------------------------------------------------------------------- | ------------------------------------------------------------------------- |
+| [`/llms.txt`](/geospatial-scene-engine/llms.txt)           | The index: the library in a sentence, then every page with its summary    | An agent that fetches what it needs — give it this address                |
+| [`/llms-full.txt`](/geospatial-scene-engine/llms-full.txt) | Every page in one Markdown file, in the order of the guide (about 100 KB) | A model with a long context, a tool that indexes docs by URL, offline use |
 
 The guide comes first in both, the reference after it. Prompts that work:
 
 ```text
-Read https://whidrubeld.github.io/three-map-terrain/llms.txt, then add
+Read https://4beru.github.io/geospatial-scene-engine/llms.txt, then add
 OpenStreetMap buildings and roads to the map in src/scene.ts.
 ```
 
 ```text
-Using https://whidrubeld.github.io/three-map-terrain/layers/vegetation.md,
+Using https://4beru.github.io/geospatial-scene-engine/layers/vegetation.md,
 plant orchards with low trees on my map.
 ```
 
 ## The API of your version
 
-The pages describe the latest release. The package’s type declarations describe the one you installed — every export with its documentation comment: `node_modules/three-map-terrain/dist/index.d.ts`, or [the latest on unpkg](https://unpkg.com/three-map-terrain/dist/index.d.ts). An agent unsure of an option’s name or a signature should read them before guessing.
+These pages describe the geospatial-scene-engine checkout, which is not a separately published npm release. Build the local workspace with `pnpm build` and read `dist/index.d.ts` for its API. The compatible package name and imports remain `three-map-terrain`. If using the upstream npm library instead, read `node_modules/three-map-terrain/dist/index.d.ts` for the version actually installed. An agent unsure of an option’s name or a signature should read the matching declarations before guessing.
 
 ## The agent skill
 
-For agents that load skills — Claude Code, Codex, Cursor and many more — [the skill](/three-map-terrain/skill/) is this documentation’s essentials in one file: the model, recipes, pitfalls, and where to read more. One command installs it:
+For agents that load skills — Claude Code, Codex, Cursor and many more — [the skill](/geospatial-scene-engine/skill/) is this documentation’s essentials in one file: the model, recipes, pitfalls, and where to read more. One command installs it:
 
 ```bash
-npx skills add whidrubeld/three-map-terrain
+npx skills add 4beru/geospatial-scene-engine
 ```

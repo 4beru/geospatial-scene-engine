@@ -114,10 +114,10 @@ new BuildingSource({
 })
 ```
 
-The [basic example](https://github.com/whidrubeld/three-map-terrain/blob/master/examples/basic/src/overture.ts) loads the [Overture Maps](https://overturemaps.org) buildings — OpenStreetMap merged with Microsoft, Google and Esri footprints — from their PMTiles archive this way, in a few lines. Your own layers take any `FeatureSource` — an object with `minZoom`, `maxZoom`, `attribution` and `load(tile)` — or a `TileFeatureSource` with a schema of your own.
+The [basic example](https://github.com/4beru/geospatial-scene-engine/blob/master/examples/basic/src/overture.ts) loads the [Overture Maps](https://overturemaps.org) buildings — OpenStreetMap merged with Microsoft, Google and Esri footprints — from their PMTiles archive this way, in a few lines. Your own layers take any `FeatureSource` — an object with `minZoom`, `maxZoom`, `attribution` and `load(tile)` — or a `TileFeatureSource` with a schema of your own.
 
 ## Loading
 
 Tiles are fetched with CORS. Network errors, HTTP 408/425/429/5xx and bodies that cannot be decoded (tile servers occasionally send truncated images with status 200) are retried up to three times with backoff, bypassing the HTTP cache. A texture that still cannot be decoded is drawn as far as it arrived; an elevation tile never is, since partial heights would be bogus terrain. A missing tile (404) falls back to its ancestors, up to six levels — the browser still logs the 404. Vector tiles that are missing are empty.
 
-Show the credits of the data you use: `map.attributions` lists them — see [Data and attribution](/three-map-terrain/attribution/).
+Show the credits of the data you use: `map.attributions` lists them — see [Data and attribution](/geospatial-scene-engine/attribution/).

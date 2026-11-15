@@ -180,7 +180,7 @@ water.setMaterial(undefined) // the map's look again
 
 Only what a hidden material left out — lines out of wireframe, copies of a hidden part — is drawn when it shows, a few tiles at a time.
 
-The live example’s looks are all made this way: aerial and wireframe from the options and a `process` ([looks.ts](https://github.com/whidrubeld/three-map-terrain/blob/master/examples/react/src/looks.ts)), plain from [a color per part](https://github.com/whidrubeld/three-map-terrain/blob/master/examples/react/src/colored.ts), textured from [a few canvas textures on the parts](https://github.com/whidrubeld/three-map-terrain/blob/master/examples/react/src/textured.ts) — and a part hidden where the photo has it already (`new MeshBasicMaterial({ visible: false })`).
+The live example’s looks are all made this way: aerial and wireframe from the options and a `process` ([looks.ts](https://github.com/4beru/geospatial-scene-engine/blob/master/examples/react/src/looks.ts)), plain from [a color per part](https://github.com/4beru/geospatial-scene-engine/blob/master/examples/react/src/colored.ts), textured from [a few canvas textures on the parts](https://github.com/4beru/geospatial-scene-engine/blob/master/examples/react/src/textured.ts) — and a part hidden where the photo has it already (`new MeshBasicMaterial({ visible: false })`).
 
 ## Options
 
