@@ -39,6 +39,10 @@ export async function checkPages(root) {
       const value = match[1].replaceAll('&amp;', '&')
       const target = new URL(value, page)
       if (target.origin !== site.origin) continue
+      // Astro emits /404/ as the canonical URL of its standalone 404.html.
+      // GitHub Pages serves that file for missing routes, not as /404/index.html.
+      if (file === '404.html' && target.href === new URL('404/', site).href)
+        continue
       if (!target.pathname.startsWith(site.pathname)) {
         errors.push(`${file}: URL outside project base: ${value}`)
         continue

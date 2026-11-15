@@ -50,6 +50,15 @@ test('rejects CSS served outside the project base', async (t) => {
   await assert.rejects(checkPages(root), /URL outside project base/)
 })
 
+test('accepts Astro standalone 404 canonical URL while checking its assets', async (t) => {
+  const root = await fixture(t, {
+    '404.html': `<link rel="canonical" href="https://4beru.github.io${base}404/"><link rel="stylesheet" href="${base}_astro/site.css">`
+  })
+  assert.equal(await checkPages(root), 4)
+  await rm(join(root, '_astro/site.css'))
+  await assert.rejects(checkPages(root), /404.html: missing local target/)
+})
+
 test('rejects a missing stylesheet asset', async (t) => {
   const root = await fixture(t, { '_astro/site.css': null })
   await assert.rejects(checkPages(root), /missing local target/)
