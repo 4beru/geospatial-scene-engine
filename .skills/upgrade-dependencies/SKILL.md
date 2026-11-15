@@ -107,9 +107,7 @@ pnpm --dir docs build          # astro check, pages, llms.txt, links
   `e2e/render.spec.ts` (`rendererQuery`).
 - The library bundle must not contain three.js: `grep -c "REVISION" dist/index.mjs` → `0`.
 - Then do a visual pass with the `verify-rendering` skill (real tile servers,
-  all examples), because e2e uses synthetic tiles. For a new three.js release
-  also check GPX Terrain (its own repository), which touches more three.js API
-  (`Line2`, `Points`, view offset, material swaps at runtime).
+  all examples), because e2e uses synthetic tiles.
 
 ## 6. Report
 

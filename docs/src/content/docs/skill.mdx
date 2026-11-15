@@ -11,20 +11,20 @@ An [agent skill](https://agentskills.io) is a `SKILL.md` a coding agent loads wh
 - **The model** — the grid of tiles, Z up, units and true scale, local coordinates, the lifecycle (`init`, `whenReady`, `clean`).
 - **Recipes** — three.js and React Three Fiber, positions and picking, a city with its layers, sources, materials, a layer of your own, export, large areas, performance.
 - **Pitfalls** — what makes terrain black, invisible or squashed, layers empty, credits missing.
-- **Where to read more** — the type declarations of the installed version, and [these pages as Markdown](/three-map-terrain/llms/).
+- **Where to read more** — the type declarations of the installed version, and [these pages as Markdown](/geospatial-scene-engine/llms/).
 
 ## Install
 
 With the [`skills`](https://github.com/vercel-labs/skills) CLI, from this repository — it asks which agents to install it for:
 
 ```bash
-npx skills add whidrubeld/three-map-terrain
+npx skills add 4beru/geospatial-scene-engine
 ```
 
 Or for one agent, in every project:
 
 ```bash
-npx skills add whidrubeld/three-map-terrain \
+npx skills add 4beru/geospatial-scene-engine \
   --skill three-map-terrain -a claude-code -g
 ```
 
@@ -44,7 +44,7 @@ A `prepare` script — `"prepare": "skills experimental_sync -y"` — keeps it l
 ## Without installing
 
 ```bash
-npx skills use whidrubeld/three-map-terrain@three-map-terrain \
+npx skills use 4beru/geospatial-scene-engine@three-map-terrain \
   --agent claude-code
 ```
 
@@ -52,7 +52,7 @@ starts the agent with the skill; without `--agent` it prints the prompt.
 
 ## The skill
 
-[`skills/three-map-terrain/SKILL.md`](https://github.com/whidrubeld/three-map-terrain/blob/master/skills/three-map-terrain/SKILL.md), as installed:
+[`skills/three-map-terrain/SKILL.md`](https://github.com/4beru/geospatial-scene-engine/blob/master/skills/three-map-terrain/SKILL.md), as installed:
 
 <details>
 <summary>Show the skill</summary>

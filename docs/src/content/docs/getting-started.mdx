@@ -5,7 +5,28 @@ description: Install three-map-terrain, put real-world terrain in a three.js sce
 
 import Demo from '../../components/Demo.astro'
 
-## Install
+## Run this checkout
+
+**geospatial-scene-engine is not a separately published npm release.** The
+package name and imports remain `three-map-terrain` for compatibility. To use
+this repository's code, clone it and build the local workspace (Node 24 and the
+pnpm version pinned in `package.json`):
+
+```bash
+git clone https://github.com/4beru/geospatial-scene-engine.git
+cd geospatial-scene-engine
+pnpm install
+pnpm build
+pnpm --dir examples/react dev
+# or: pnpm --dir docs dev
+```
+
+The examples and docs depend on `three-map-terrain: workspace:*` and resolve
+the root library's built `dist/`. Rebuild after library source changes.
+
+## Published library alternative
+
+The following installs the actual upstream npm library, not this checkout:
 
 ```bash
 npm install three three-map-terrain
@@ -46,7 +67,7 @@ renderer.setAnimationLoop(() => {
 
 Built-in materials react to lights: add an `AmbientLight` and a `DirectionalLight`, or pass `material: { lights: false }`.
 
-A `Map` is a grid of tiles — `nTiles × nTiles` (3 by default) at `zoom` (11) around `location`, or any rectangle of tiles as `grid` — and `map.terrain` is a `Group` with a mesh per tile. Its [options](/three-map-terrain/api/map/) set the size, detail and vertical scale.
+A `Map` is a grid of tiles — `nTiles × nTiles` (3 by default) at `zoom` (11) around `location`, or any rectangle of tiles as `grid` — and `map.terrain` is a `Group` with a mesh per tile. Its [options](/geospatial-scene-engine/api/map/) set the size, detail and vertical scale.
 
 ## Put things on the map
 
@@ -113,7 +134,7 @@ export default function App() {
 
 ## Next
 
-- [Layers](/three-map-terrain/layers/) — buildings, roads and bridges, water, vegetation and a base.
-- [Materials](/three-map-terrain/materials/) — the look, the imagery's pixels, your own materials.
-- [Sources](/three-map-terrain/sources/) — imagery, elevation and features from any server.
-- [Examples](/three-map-terrain/examples/) — the live example, plain three.js, and a full app.
+- [Layers](/geospatial-scene-engine/layers/) — buildings, roads and bridges, water, vegetation and a base.
+- [Materials](/geospatial-scene-engine/materials/) — the look, the imagery's pixels, your own materials.
+- [Sources](/geospatial-scene-engine/sources/) — imagery, elevation and features from any server.
+- [Examples](/geospatial-scene-engine/examples/) feature React Three Fiber and plain three.js.

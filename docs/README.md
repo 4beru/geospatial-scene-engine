@@ -1,12 +1,14 @@
-# three-map-terrain · docs
+# geospatial-scene-engine · docs
 
-The documentation site, <https://whidrubeld.github.io/three-map-terrain/>:
+The documentation site, <https://4beru.github.io/geospatial-scene-engine/>:
 [Astro Starlight](https://starlight.astro.build), pages in Markdown with live
 demos, every page also as Markdown for LLMs (`llms.txt`, Copy page).
 How it is put together — pages, demos, links, the look, the deploy — is in
 the repository's [AGENTS.md](../AGENTS.md#documentation-docs).
 
-`three-map-terrain` is the repository root, a package of the same pnpm
+The root library retains the package name `three-map-terrain` for compatibility.
+This checkout is not a separately published npm release. The docs use the local
+library, a package of the same pnpm
 workspace (`workspace:*`), so build the library first:
 
 ```bash
@@ -14,7 +16,7 @@ workspace (`workspace:*`), so build the library first:
 pnpm install && pnpm build
 
 # this folder
-pnpm dev         # http://localhost:4321/three-map-terrain/ (a fresh content cache;
+pnpm dev         # http://localhost:4321/geospatial-scene-engine/ (a fresh content cache;
                  # replaces a dev server already running)
 pnpm typecheck   # astro check: pages, components, demos
 pnpm build       # astro check + the site in dist/ (validates internal links)

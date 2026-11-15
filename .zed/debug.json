@@ -27,7 +27,7 @@
     "adapter": "JavaScript",
     "type": "chrome",
     "request": "launch",
-    "url": "http://localhost:4321/three-map-terrain/",
+    "url": "http://localhost:4321/geospatial-scene-engine/",
     "webRoot": "$ZED_WORKTREE_ROOT/docs"
   },
   {

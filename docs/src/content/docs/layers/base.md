@@ -9,7 +9,7 @@ import { TerrainBase } from 'three-map-terrain'
 map.addLayer(new TerrainBase()) // a solid block
 ```
 
-`TerrainBase` closes the terrain into a solid block — side walls from its outer edges down to `depth` meters below its lowest point, and a bottom — for a cut-out of the world, and a closed model to [print](/three-map-terrain/export/). It is rebuilt as tiles load and are removed: walls stand along every side without a neighbour. In wireframe it is drawn as its outline.
+`TerrainBase` closes the terrain into a solid block — side walls from its outer edges down to `depth` meters below its lowest point, and a bottom — for a cut-out of the world, and a closed model to [print](/geospatial-scene-engine/export/). It is rebuilt as tiles load and are removed: walls stand along every side without a neighbour. In wireframe it is drawn as its outline.
 
 ## `new TerrainBase({ depth?, material? })`
 
