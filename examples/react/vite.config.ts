@@ -2,7 +2,7 @@ import react from '@vitejs/plugin-react'
 import { defineConfig } from 'vite'
 
 export default defineConfig({
-  // relative asset URLs: served from https://<user>.github.io/three-map-terrain/
+  // Relative assets also work under /geospatial-scene-engine/examples/react/.
   base: './',
   plugins: [react()],
   resolve: {

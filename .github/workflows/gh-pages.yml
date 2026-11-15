@@ -4,9 +4,14 @@ on:
   push:
     branches:
       - master
+  workflow_dispatch:
 
 permissions:
   contents: write
+
+concurrency:
+  group: github-pages
+  cancel-in-progress: false
 
 jobs:
   build:
@@ -34,15 +39,19 @@ jobs:
       - name: Build docs
         run: pnpm --dir docs build
 
-      # the examples under /examples/: the live example (examples/react) and
-      # the basic one. The full app built with the library, GPX Terrain,
-      # lives in its own repository (whidrubeld/gpx-terrain)
+      # Both examples belong to this repository and live under /examples/.
       - name: Build examples
         run: |
+          mkdir -p docs/dist/examples
           for example in react basic; do
             pnpm --dir examples/$example build
             cp -R examples/$example/dist docs/dist/examples/$example
           done
+
+      - name: Check published paths and repository links
+        run: |
+          node --test scripts/check-pages.test.mjs
+          pnpm check:pages
 
       - name: Deploy to GitHub Pages
         uses: JamesIves/github-pages-deploy-action@v4.9.0

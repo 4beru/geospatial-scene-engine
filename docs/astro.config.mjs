@@ -7,7 +7,7 @@ import starlightLlmActions from 'starlight-llm-actions'
 
 import { tableLabels } from './src/table-labels.mjs'
 
-const repository = 'https://github.com/whidrubeld/three-map-terrain'
+const repository = 'https://github.com/4beru/geospatial-scene-engine'
 
 /** The guide in reading order: the sidebar's, and llms.txt's. */
 const LAYERS = ['buildings', 'roads', 'water', 'vegetation', 'base'].map(
@@ -25,13 +25,13 @@ const GUIDE = [
 export default defineConfig({
   // the examples are built on their own and copied under /examples/ (see
   // .github/workflows/gh-pages.yml)
-  site: 'https://whidrubeld.github.io',
-  base: '/three-map-terrain',
+  site: 'https://4beru.github.io',
+  base: '/geospatial-scene-engine',
   // Starlight adds its own plugins to this processor
   markdown: { processor: satteri({ hastPlugins: [tableLabels] }) },
   integrations: [
     starlight({
-      title: 'three-map-terrain',
+      title: 'geospatial-scene-engine',
       description:
         'Real-world 3D terrain for three.js from any map tiles — with buildings, roads and bridges, water and vegetation, and a frame for your own layers.',
       favicon: '/favicon.svg',
@@ -100,7 +100,7 @@ export default defineConfig({
         starlightLinksValidator({
           // the examples are apps of their own, not pages
           exclude: ({ link }) =>
-            /^\/three-map-terrain\/examples\/\w+\//.test(link)
+            /^\/geospatial-scene-engine\/examples\/\w+\//.test(link)
         }),
         starlightLlmActions({
           // pages as Markdown — the demos' code included, their chrome not
