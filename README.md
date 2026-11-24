@@ -396,44 +396,6 @@ The default 3 × 3 terrain grid with 100 segments per
 tile contains approximately 180,000 terrain triangles,
 before adding geographic layers or additional geometry.
 
-### Surface Interpolation
-
-Geographic features must follow the rendered surface
-rather than an independent approximation of its elevation.
-
-The engine evaluates terrain height through interpolation
-over the actual mesh triangles.
-
-Conceptually, the position within a triangle is expressed
-using barycentric coordinates:
-
-$$
-\mathbf{p}
-=
-\alpha\mathbf{v}_1+
-\beta\mathbf{v}_2+
-\gamma\mathbf{v}_3
-$$
-
-Subject to:
-
-$$
-\alpha+\beta+\gamma=1
-$$
-
-The corresponding elevation is:
-
-$$
-h=
-\alpha h_1+
-\beta h_2+
-\gamma h_3
-$$
-
-This shared surface representation allows buildings,
-roads, water geometry, vegetation, and custom objects
-to remain aligned with the reconstructed terrain.
-
 ### Tile Continuity
 
 Neighboring elevation tiles may contain different
